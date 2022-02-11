@@ -18,6 +18,7 @@
   "homepage": "https://github.com/foglee89/CS340-Group-DB-Project#readme",
   "dependencies": {
     "consolidate": "^0.16.0",
-    "express": "^4.17.2"
+    "express": "^4.17.2",
+    "underscore": "^1.13.2"
   }
 }
