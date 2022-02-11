@@ -23,6 +23,17 @@ var persons = [
   { name: "Nelson", age: 40 },
 ];
 
+Handlebars.registerPartial(
+  "product", 
+  "{{product.name}} is {{product.age}} days old.\n"
+)
+
+var products = [
+  { name: "Jelly", age: 20 },
+  { name: "Bread", age: 10 },
+  { name: "Peanutbutter", age: 40 },
+];
+
 
 app.get('/', (req, res) => {
   res.render('home', {
@@ -33,8 +44,8 @@ app.get('/', (req, res) => {
 
 app.get('/products', (req, res) => {
   res.render('products', {
-    title: 'Users',
-    persons: persons
+    title: 'Products',
+    products: products
   });
 
   // TODO
