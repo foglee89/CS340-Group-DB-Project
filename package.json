@@ -1,0 +1,19 @@
+{
+  "name": "kitchenstock",
+  "version": "0.1.0",
+  "description": "An app to track and manage your cooking ingredients and recipes. Other features like shoppinglist generation aim to smooth the average homecooks experience while keeping a well stocked pantry.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/foglee89/CS340-Group-DB-Project.git"
+  },
+  "author": "C. Greyston Brady, Erik Fogle",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/foglee89/CS340-Group-DB-Project/issues"
+  },
+  "homepage": "https://github.com/foglee89/CS340-Group-DB-Project#readme"
+}
