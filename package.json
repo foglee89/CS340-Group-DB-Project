@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/foglee89/CS340-Group-DB-Project#readme",
   "dependencies": {
-    "express": "^4.17.2"
+    "express": "^4.17.2",
+    "express-handlebars": "^6.0.2"
   }
 }
