@@ -18,28 +18,37 @@ users.push({ name: 'jane' });
 
 
 app.get('/', (req, res) => {
-  res.render('users', {
+  res.render('home', {
     title: 'Users',
     users: users
   });
 })
 
 app.get('/products', (req, res) => {
-  res.send('products visualization');
+  res.render('products', {
+    title: 'Users',
+    users: users
+  });
 
   // TODO
 
 })
 
 app.get('/recipes', (req, res) => {
-  res.send('recipes visualization');
+  res.render('recipes', {
+    title: 'Users',
+    users: users
+  });
 
   // TODO
 
 })
 
 app.get('/locations', (req, res) => {
-  res.send('locations visualization');
+  res.render('location', {
+    title: 'Users',
+    users: users
+  });
 
   // TODO
 
