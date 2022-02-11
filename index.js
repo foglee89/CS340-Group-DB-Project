@@ -52,7 +52,7 @@ app.get('/recipes', (req, res) => {
 })
 
 app.get('/locations', (req, res) => {
-  res.render('location', {
+  res.render('locations', {
     title: 'Users',
     persons: persons
   });
