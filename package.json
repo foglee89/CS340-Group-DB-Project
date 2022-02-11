@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/foglee89/CS340-Group-DB-Project/issues"
   },
-  "homepage": "https://github.com/foglee89/CS340-Group-DB-Project#readme"
+  "homepage": "https://github.com/foglee89/CS340-Group-DB-Project#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
 }
