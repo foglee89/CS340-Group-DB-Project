@@ -1,24 +1,42 @@
-// Imports
-const express = require('express'),
-      Handlebars = require('handlebars')
-      cons = require('consolidate'),
-      res = require('express/lib/response'),
+//  === Imports ===
+
+//  ---- Stack ----
+
+// http://expressjs.com/
+// -> Routes URLs
+const express = require('express');
+
+// https://handlebarsjs.com
+// -> Template Rendering
+const Handlebars = require('handlebars');
+
+// https://github.com/keithws/wax-on
+// -> Template Composition and Layout
+const wax = require("wax-on");
+
+// === Configuration ===s
+
+const cons = require('consolidate'),
       app = express(),
       port = 3000;
 
-// assign the handlebars engine to .html files
-app.engine('html', cons.handlebars);
+// Configure Wax-On
+wax.on(Handlebars);
+wax.setLayoutPath("");
 
 Handlebars.registerPartial(
   "person", 
   "{{person.name}} is {{person.age}} years old.\n"
 )
 
-// set .html as the default extension
+// Configure Express with Consolodate/Handlebars
+app.engine('html', cons.handlebars);
+
+// Configure Views Directory
 app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
 
-// Mock Data
+// === Mock Data ===
 var persons = [
   { name: "Nils", age: 20 },
   { name: "Teddy", age: 10 },
@@ -76,6 +94,9 @@ app.get('/locations', (req, res) => {
 
 })
 
+app.use((req, res, next) => {
+  res.status(404).send("404: Sorry can't find that!")
+})
 
 // Host it!
 app.listen(port, () => {
