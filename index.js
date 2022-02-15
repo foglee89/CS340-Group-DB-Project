@@ -1,3 +1,4 @@
+// Imports
 const express = require('express'),
       Handlebars = require('handlebars')
       cons = require('consolidate'),
@@ -17,16 +18,12 @@ Handlebars.registerPartial(
 app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
 
+// Mock Data
 var persons = [
   { name: "Nils", age: 20 },
   { name: "Teddy", age: 10 },
   { name: "Nelson", age: 40 },
 ];
-
-Handlebars.registerPartial(
-  "product", 
-  "{{product.name}} is {{product.age}} days old.\n"
-)
 
 var products = [
   { name: "Jelly", age: 20 },
@@ -34,6 +31,13 @@ var products = [
   { name: "Peanutbutter", age: 40 },
 ];
 
+// Register Partials with Handlebars
+Handlebars.registerPartial(
+  "product", 
+  "{{product.name}} is {{product.age}} days old.\n"
+)
+
+// === Endpoints ===
 
 app.get('/', (req, res) => {
   res.render('home', {
@@ -72,6 +76,8 @@ app.get('/locations', (req, res) => {
 
 })
 
+
+// Host it!
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
