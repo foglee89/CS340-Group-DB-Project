@@ -40,7 +40,7 @@ app.use(express.static('public'))
 
 // === Mock Data ===
 var siteMap = [
-  { name: "Home",           route: "/home", },
+  { name: "Home",           route: "/", },
   { name: "Products",       route: "/products", },
   { name: "Locations",      route: "/locations", },
   { name: "Recipes",        route: "/recipes", },
@@ -87,7 +87,7 @@ app.get('/products', (req, res) => {
 
 app.get('/recipes', (req, res) => {
   res.render('recipes', {
-    title: 'Users',
+    title: 'Recipes',
     persons: persons
   });
 
@@ -97,7 +97,27 @@ app.get('/recipes', (req, res) => {
 
 app.get('/locations', (req, res) => {
   res.render('locations', {
-    title: 'Users',
+    title: 'Locations',
+    persons: persons
+  });
+
+  // TODO
+
+})
+
+app.get('/mealplans', (req, res) => {
+  res.render('mealplans', {
+    title: 'Meal Plans',
+    persons: persons
+  });
+
+  // TODO
+
+})
+
+app.get('/shopping', (req, res) => {
+  res.render('shopping', {
+    title: 'Shopping Lists',
     persons: persons
   });
 

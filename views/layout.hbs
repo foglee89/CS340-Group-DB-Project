@@ -42,29 +42,6 @@
     .container__main {
         flex-grow: 1;
     }
-
-    .tabs {
-        /* Center the content */
-        align-items: center;
-        display: flex;
-        justify-content: center;
-    }
-
-    .tabs__tab--active {
-        /* Border */
-        border: 1px solid rgba(0, 0, 0, 0.3);
-        /* Hide the bottom border */
-        border-bottom-color: transparent;
-
-        /* Border radius */
-        border-top-left-radius: 2px;
-        border-top-right-radius: 2px;
-    }
-
-    .tabs__tab--inactive {
-        /* Has only the bottom border */
-        border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-    }
   </style>
 
   <!-- Scripts
@@ -90,30 +67,12 @@
     <header class="container__header u-full-width">
 
         <div class="tabs five u-full-width">
-            <!-- Active tab -->
-            <div class="tabs__tab--active one column">
-                Page 1
-            </div>
-
-            <!-- Inactive tab -->
-            <div class="tabs__tab--inactive one column">
-                Page 2
-            </div>
-
-            <!-- Inactive tab -->
-            <div class="tabs__tab--inactive one column">
-                Page 3
-            </div>
-
-            <!-- Inactive tab -->
-            <div class="tabs__tab--inactive one column">
-                Page 4
-            </div>
-
-            <!-- Inactive tab -->
-            <div class="tabs__tab--inactive one column">
-                Page 5
-            </div>
+            <!-- Standard buttons -->
+            <a class="button" href="#">Anchor button</a>
+            <a class="button" href="#">Anchor button</a>
+            <a class="button" href="#">Anchor button</a>
+            <a class="button" href="#">Anchor button</a>
+            <a class="button" href="#">Anchor button</a>
         </div>
     </header>
     {{/block}}
