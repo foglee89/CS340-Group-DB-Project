@@ -60,7 +60,7 @@ Handlebars.registerPartial(
 // === Endpoints ===
 
 app.get('/', (req, res) => {
-  res.render('skelayout', {
+  res.render('page-a', {
     title: 'Users',
     persons: persons
   });
