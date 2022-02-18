@@ -19,6 +19,36 @@
                         <th>unit</th>
                         <th>purchase_date</th>
                         <th>expiration_date</th>
+                        <th>add</th>
+                        <th>search</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr>
+                            <td><input type="number">product_id<input></td>
+                            <td><input type="text">product_name<input></td>
+                            <td><input type="">product_category<input></td>
+                            <td><input type="text">location_name<input></td>
+                            <td><input type="number">stored_quantity<input></td>
+                            <td><input type="">unit<input></td>
+                            <td><input type="date">purchase_date<input></td>
+                            <td><input type="date">expiration_date<input></td>
+                            <td>✔️</td>
+                            <td>🔍</td>
+                        </tr>
+                </tbody>
+            </table>
+            <table class="u-full-width">
+                <thead>
+                    <tr>
+                        <th>product_id</th>
+                        <th>product_name</th>
+                        <th>product_category</th>
+                        <th>location_id</th>
+                        <th>stored_quantity</th>
+                        <th>unit</th>
+                        <th>purchase_date</th>
+                        <th>expiration_date</th>
                         <th>edit</th>
                         <th>delete</th>
                     </tr>
@@ -62,6 +92,7 @@
 
         {{> product-table}}
 
+                <!-- The above form looks like this -->
         <!-- Always wrap checkbox and radio inputs in a label and use a <span class="label-body"> inside of it -->
 
         <!-- Note: The class .u-full-width is just a utility class shorthand for width: 100% -->
