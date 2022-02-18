@@ -5,10 +5,7 @@
     {{#block "scripts"}}
     {{/block}}
  
-    {{#block "content"}}
-        <h1>
-            {{title}}
-        </h1>
+    {{#block "content" mode="append"}}
 
         {{#*inline "product-table"}}
             <table class="u-full-width">
@@ -29,16 +26,16 @@
                 <tbody>
                     {{#each products}}
                         <tr>
-                            <th>{{product_id}}</th>
-                            <th>{{product_name}}</th>
-                            <th>{{product_category}}</th>
-                            <th>{{location_id}}</th>
-                            <th>{{stored_quantity}}</th>
-                            <th>{{unit}}</th>
-                            <th>{{purchase_date}}</th>
-                            <th>{{expiration_date}}</th>
-                            <th>✏️</th>
-                            <th>❌</th>
+                            <td>{{product_id}}</td>
+                            <td>{{product_name}}</td>
+                            <td>{{product_category}}</td>
+                            <td>{{location_id}}</td>
+                            <td>{{stored_quantity}}</td>
+                            <td>{{unit}}</td>
+                            <td>{{purchase_date}}</td>
+                            <td>{{expiration_date}}</td>
+                            <td>📝</td>
+                            <td>❌</td>
                         </tr>
                     {{/each}}
                 </tbody>

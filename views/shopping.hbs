@@ -5,10 +5,7 @@
     {{#block "scripts"}}
     {{/block}}
  
-    {{#block "content"}}
-        <h1>
-            {{title}}
-        </h1>
+    {{#block "content" mode="append"}}
 
         {{#*inline "shopping-table"}}
             <table class="u-full-width">
@@ -23,10 +20,10 @@
                 <tbody>
                     {{#each shopping}}
                         <tr>
-                            <th>{{purchase_date}}</th>
-                            <th>{{meal_plan_range}}</th>
-                            <th>✏️</th>
-                            <th>❌</th>
+                            <td>{{purchase_date}}</td>
+                            <td>{{meal_plan_range}}</td>
+                            <td>📝</td>
+                            <td>❌</td>
                         </tr>
                     {{/each}}
                 </tbody>

@@ -5,10 +5,7 @@
     {{#block "scripts"}}
     {{/block}}
  
-    {{#block "content"}}
-        <h1>
-            {{title}}
-        </h1>
+    {{#block "content" mode="append"}}
 
         {{#*inline "location-table"}}
             <table class="u-full-width">
@@ -25,12 +22,22 @@
                 <tbody>
                     {{#each locations}}
                         <tr>
-                            <th>{{location_id}}</th>
-                            <th>{{location_name}}</th>
-                            <th>{{category}}</th>
-                            <th>{{product_id}}</th>
-                            <th>✏️</th>
-                            <th>❌</th>
+                                <th>{{location_id}}</th>
+                                <th>{{location_name}}</th>
+                                <th>{{category}}</th>
+                                <th>{{product_id}}</th>
+                                <th>📝</th>
+                                <th>❌</th>
+                        </tr>
+                        <tr>
+                            <form>
+                                <td><input type="number">location_id<input></td>
+                                <td><input type="text">location_name<input></td>
+                                <td><input type="">category<input></td>
+                                <td><input type="number">product_id<input></td>
+                                <td><input type="button">edit<input></td>
+                                <td><input type="button">delete<input></td>
+                            </form>
                         </tr>
                     {{/each}}
                 </tbody>
@@ -38,31 +45,6 @@
         {{/inline}}
 
         {{> location-table}}
-
-                <!-- The above form looks like this -->
-        <form>
-        <div class="three row">
-            <div class="six columns">
-            <label for="exampleEmailInput">Your email</label>
-            <input class="u-full-width" type="email" placeholder="test@mailbox.com" id="exampleEmailInput">
-            </div>
-            <div class="six columns">
-            <label for="exampleRecipientInput">Reason for contacting</label>
-            <select class="u-full-width" id="exampleRecipientInput">
-                <option value="Option 1">Questions</option>
-                <option value="Option 2">Admiration</option>
-                <option value="Option 3">Can I get your number?</option>
-            </select>
-            </div>
-        </div>
-        <label for="exampleMessage">Message</label>
-        <textarea class="u-full-width" placeholder="Hi Dave …" id="exampleMessage"></textarea>
-        <label class="example-send-yourself-copy">
-            <input type="checkbox">
-            <span class="label-body">Send a copy to yourself</span>
-        </label>
-        <input class="button-primary" type="submit" value="Submit">
-        </form>
 
         <!-- Always wrap checkbox and radio inputs in a label and use a <span class="label-body"> inside of it -->
 
