@@ -44,8 +44,8 @@ var siteMap = [
   { name: "Products",       route: "/products", },
   { name: "Locations",      route: "/locations", },
   { name: "Recipes",        route: "/recipes", },
-  // { name: "Meal Plans",     route: "/mealplans", },
-  { name: "Shopping Lists", route: "/shopping", }
+  { name: "Shopping Lists", route: "/shopping", },
+  // { name: "Meal Plans",     route: "/mealplans", }
 ];
 
 var persons = [
@@ -62,7 +62,7 @@ var products = [
 
 var locations = [
   {location_id: "1", location_name: "Desert Cabinet", category: "Candy, Baked Good", product_id: "1, 2, 3", },
-  {location_id: "2", location_name: "Refridgerator", catergory: "Chilled goods", product_id: "NULL"}
+  {location_id: "2", location_name: "Refrigerator", catergory: "Chilled goods", product_id: "NULL"}
 ];
 
 var recipes = [

@@ -1,4 +1,4 @@
-{{! recipes.hbs }}
+{{! shopping.hbs }}
  
 {{#extends "layout"}}
  
@@ -16,13 +16,17 @@
                     <tr>
                         <th>purchase_date</th>
                         <th>meal_plan_range</th>
+                        <th>edit</th>
+                        <th>delete</th>
                     </tr>
                 </thead>
                 <tbody>
                     {{#each shopping}}
                         <tr>
-                                <th>{{purchase_date}}</th>
-                                <th>{{meal_plan_range}}</th>
+                            <th>{{purchase_date}}</th>
+                            <th>{{meal_plan_range}}</th>
+                            <th>✏️</th>
+                            <th>❌</th>
                         </tr>
                     {{/each}}
                 </tbody>

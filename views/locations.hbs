@@ -1,4 +1,4 @@
-{{! recipes.hbs }}
+{{! locations.hbs }}
  
 {{#extends "layout"}}
  
@@ -18,15 +18,19 @@
                         <th>location_name</th>
                         <th>category</th>
                         <th>product_id</th>
+                        <th>edit</th>
+                        <th>delete</th>
                     </tr>
                 </thead>
                 <tbody>
                     {{#each locations}}
                         <tr>
-                                <th>{{location_id}}</th>
-                                <th>{{location_name}}</th>
-                                <th>{{category}}</th>
-                                <th>{{product_id}}</th>
+                            <th>{{location_id}}</th>
+                            <th>{{location_name}}</th>
+                            <th>{{category}}</th>
+                            <th>{{product_id}}</th>
+                            <th>✏️</th>
+                            <th>❌</th>
                         </tr>
                     {{/each}}
                 </tbody>
