@@ -1,18 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<meta charset="UTF-8">
-<title>Page Title</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="">
-<style>
-</style>
-<body>
-
-Visualization with temporary data borrowed from https://observablehq.com/@d3/treemap
-Will be updated for dynamic rendering of database data between drafts
-
-<iframe width="100%" height="1043" frameborder="0"
-  src="https://observablehq.com/embed/@d3/treemap?cells=chart"></iframe>
-
-</body>
-</html> 
+{{! recipes.hbs }}
+ 
+{{#extends "layout"}}
+ 
+    {{#block "scripts"}}
+        <script src="/jquery.js"></script>
+        <script src="/pets.js"></script>
+    {{/block}}
+ 
+    {{#block "content"}}
+        <h1>
+            {{title}}
+        </h1>
+        {{#each pets as |petName|}}
+            <p>{{petName}}</p>
+        {{/each}}
+    {{/block}}
+ 
+{{/extends}}

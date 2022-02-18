@@ -39,6 +39,15 @@ app.set('views', __dirname + '/views');
 app.use(express.static('public'))
 
 // === Mock Data ===
+var siteMap = [
+  { name: "Home",           route: "/home", },
+  { name: "Products",       route: "/products", },
+  { name: "Locations",      route: "/locations", },
+  { name: "Recipes",        route: "/recipes", },
+  { name: "Meal Plans",     route: "/mealplans", },
+  { name: "Shopping Lists", route: "/shopping", }
+];
+
 var persons = [
   { name: "Nils", age: 20 },
   { name: "Teddy", age: 10 },
@@ -60,7 +69,7 @@ Handlebars.registerPartial(
 // === Endpoints ===
 
 app.get('/', (req, res) => {
-  res.render('page-a', {
+  res.render('layout', {
     title: 'Users',
     persons: persons
   });
