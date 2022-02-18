@@ -1,0 +1,29 @@
+{{! layout.hbs }}
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ 
+    <meta charset="utf-8">
+    <title>
+        My Site — {{title}}
+    </title>
+    {{#block "scripts"}}
+        <script src="/jquery.js"></script>
+    {{/block}}
+ 
+</head>
+<body>
+ 
+    {{#block "content"}}{{/block}}
+ 
+    {{#block "foot"}}
+        <div id="footer">
+            <p>
+                some footer content
+            </p>
+        </div>
+    {{/block}}
+ 
+</body>
+</html>

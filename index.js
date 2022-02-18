@@ -22,7 +22,7 @@ const cons = require('consolidate'),
 
 // Configure Wax-On
 wax.on(Handlebars);
-wax.setLayoutPath("");
+wax.setLayoutPath(__dirname + '/views');
 
 Handlebars.registerPartial(
   "person", 
@@ -30,10 +30,10 @@ Handlebars.registerPartial(
 )
 
 // Configure Express with Consolodate/Handlebars
-app.engine('html', cons.handlebars);
+app.engine('hbs', cons.handlebars);
 
 // Configure Views Directory
-app.set('view engine', 'html');
+app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views');
 
 // === Mock Data ===
@@ -58,7 +58,7 @@ Handlebars.registerPartial(
 // === Endpoints ===
 
 app.get('/', (req, res) => {
-  res.render('home', {
+  res.render('page-a', {
     title: 'Users',
     persons: persons
   });
