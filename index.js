@@ -44,7 +44,7 @@ var siteMap = [
   { name: "Products",       route: "/products", },
   { name: "Locations",      route: "/locations", },
   { name: "Recipes",        route: "/recipes", },
-  { name: "Meal Plans",     route: "/mealplans", },
+  // { name: "Meal Plans",     route: "/mealplans", },
   { name: "Shopping Lists", route: "/shopping", }
 ];
 
@@ -65,7 +65,11 @@ var locations = [
 ];
 
 var recipes = [
+  {recipe_id:  "1", recipe_name:  "Smores", total_time:  "10 minutes", active_time:  "10 minutes", },
+];
 
+var shopping = [
+  {purchase_date: "", meal_plan_range: ""},
 ];
 
 // Register Partials with Handlebars
@@ -76,6 +80,13 @@ Handlebars.registerPartial(
 
 // === Endpoints ===
 
+// CRUD     SQL             HTML
+// Create 	INSERT/UPDATE   PUT
+// Read 	  SELECT          GET
+// Delete 	DELETE          DELETE
+
+// --- /Notes
+
 app.get('/', (req, res) => {
   res.render('home', {
     title: 'Home',
@@ -84,6 +95,14 @@ app.get('/', (req, res) => {
   });
 })
 
+// === Products ===
+
+// Create 	INSERT/UPDATE  PUT
+app.put('/products', (req, res) => {
+  res.redirect("/products")
+})
+
+// Read 	  SELECT  GET
 app.get('/products', (req, res) => {
   res.render('products', {
     title: 'Products',
@@ -95,17 +114,42 @@ app.get('/products', (req, res) => {
 
 })
 
+// Delete 	DELETE  DELETE
+app.delete('/products', (req, res) => {
+  res.redirect("/products")
+})
+
+// === Recipes ===
+
+// Create 	INSERT/UPDATE  PUT
+app.put('/recipes', (req, res) => {
+  res.redirect("/recipes")
+})
+
+// Read 	  SELECT  GET
 app.get('/recipes', (req, res) => {
   res.render('recipes', {
     title: 'Recipes',
     sM: siteMap,
-    persons: persons
+    recipes: recipes
   });
 
   // TODO
 
 })
+// Delete 	DELETE  DELETE
+app.delete('/recipes', (req, res) => {
+  res.redirect("/recipes")
+})
 
+// === Locations ===
+
+// Create 	INSERT/UPDATE  PUT
+app.put('/locations', (req, res) => {
+  res.redirect("/locations")
+})
+
+// Read 	  SELECT  GET
 app.get('/locations', (req, res) => {
   res.render('locations', {
     title: 'Locations',
@@ -117,6 +161,13 @@ app.get('/locations', (req, res) => {
 
 })
 
+// Delete 	DELETE  DELETE
+app.delete('/locations', (req, res) => {
+  res.redirect("/locations")
+})
+
+// === Meal Plans (Unused) ===
+
 app.get('/mealplans', (req, res) => {
   res.render('mealplans', {
     title: 'Meal Plans',
@@ -126,6 +177,12 @@ app.get('/mealplans', (req, res) => {
 
   // TODO
 
+})
+
+// === Shopping ===
+
+app.put('/shopping', (req, res) => {
+  res.redirect("/shopping")
 })
 
 app.get('/shopping', (req, res) => {
@@ -139,9 +196,13 @@ app.get('/shopping', (req, res) => {
 
 })
 
-// app.use((req, res, next) => {
-//   res.status(404).send("404: Sorry can't find that!")
-// })
+app.delete('/shopping', (req, res) => {
+  
+})
+
+app.use((req, res, next) => {
+  res.status(404).send("404: Sorry can't find that!")
+})
 
 // Host it!
 app.listen(port, () => {

@@ -14,18 +14,19 @@
             <table class="u-full-width">
                 <thead>
                     <tr>
-                        <th>Recipe-ID</th>
-                        <th>Recipe-Name</th>
-                        <th>total-time</th>
-                        <th>active-time</th>
+                        <th>recipe_id</th>
+                        <th>recipe_name</th>
+                        <th>total_time</th>
+                        <th>active_time</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {{#each a}}
+                    {{#each recipes}}
                         <tr>
-                            {{#each b}}
-                                <td>Dave Gamache</td>
-                            {{/each}}
+                            <th>{{recipe_id}}<th>
+                            <th>{{recipe_name}}<th>
+                            <th>{{total_time}}<th>
+                            <th>{{active_time}}<th>
                         </tr>
                     {{/each}}
                 </tbody>

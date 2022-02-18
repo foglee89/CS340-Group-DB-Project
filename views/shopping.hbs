@@ -10,6 +10,27 @@
             {{title}}
         </h1>
 
+        {{#*inline "shopping-table"}}
+            <table class="u-full-width">
+                <thead>
+                    <tr>
+                        <th>purchase_date</th>
+                        <th>meal_plan_range</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each shopping}}
+                        <tr>
+                                <th>{{purchase_date}}</th>
+                                <th>{{meal_plan_range}}</th>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        {{/inline}}
+
+        {{> shopping-table}}
+
         <!-- The above form looks like this -->
         <form>
         <div class="row">
