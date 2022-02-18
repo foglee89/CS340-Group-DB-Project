@@ -20,14 +20,26 @@
                     </tr>
                 </thead>
                 <tbody>
+                        <tr>
+                            <form>
+                                <td><input type="number" value="" id=""></td>
+                                <td><input type="text" value="" id=""></td>
+                                <td><input type="time" value="" id=""></td>
+                                <td><input type="time" value="" id=""></td>
+                                <td><input type="button" value="📝" id=""></td>
+                                <td><input type="button" value="❌" id=""></td>
+                            </form>
+                        </tr>
                     {{#each recipes}}
                         <tr>
-                            <td>{{recipe_id}}<td>
-                            <td>{{recipe_name}}<td>
-                            <td>{{total_time}}<td>
-                            <td>{{active_time}}<td>
-                            <td>📝</td>
-                            <td>❌</td>
+                            <form>
+                                <td><input type="number" value="{{recipe_id}}" id="f{{recipe_id}}"></td>
+                                <td><input type="text" value="{{recipe_name}}" id="{{recipe_name}}"></td>
+                                <td><input type="time" value="{{total_time}}" id="{{total_time}}"></td>
+                                <td><input type="time" value="{{total_time}}" id="{{total_time}}"></td>
+                                <td><input type="button" value="📝" id=""></td>
+                                <td><input type="button" value="❌" id=""></td>
+                            </form>
                         </tr>
                     {{/each}}
                 </tbody>

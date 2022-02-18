@@ -54,18 +54,36 @@
                     </tr>
                 </thead>
                 <tbody>
+                        {{!-- The Create New Overload --}}
+                        <tr>
+                            <form>
+                                <td><input type="number" value="{{product_id}}" id="f{{product_id}}"></td>
+                                <td><input type="text" value="{{product_name}}" id="f{{product_name}}"></td>
+                                <td><input type="" value="{{product_category}}" id="f{{product_category}}"></td>
+                                <td><input type="number" value="{{location_id}}" id="f{{location_id}}"></td>
+                                <td><input type="number" value="{{stored_quantity}}" id="f{{stored_quantity}}"></td>
+                                <td><input type="text" value="{{unit}}" id="f{{unit}}"></td>
+                                <td><input type="date" value="{{purchase_date}}" id="f{{purchase_date}}"></td>
+                                <td><input type="date" value="{{expiration_date}}" id="f{{expiration_date}}"></td>
+                                <td><input type="button" value="📝" id=""></td>
+                                <td><input type="button" value="❌" id=""></td>
+                            </form>
+                        </tr>
+                        {{!-- Per entry goodness --}}
                     {{#each products}}
                         <tr>
-                            <td><input type="number" value="{{product_id}}" id="f{{product_id}}"></td>
-                            <td><input type="text" value="{{product_name}}" id="f{{product_name}}"></td>
-                            <td><input type="" value="{{product_category}}" id="f{{product_category}}"></td>
-                            <td><input type="number" value="{{location_id}}" id="f{{location_id}}"></td>
-                            <td><input type="number" value="{{stored_quantity}}" id="f{{stored_quantity}}"></td>
-                            <td><input type="text" value="{{unit}}" id="f{{unit}}"></td>
-                            <td><input type="date" value="{{purchase_date}}" id="f{{purchase_date}}"></td>
-                            <td><input type="date" value="{{expiration_date}}" id="f{{expiration_date}}"></td>
-                            <td><input type="button" value="📝" id=""></td>
-                            <td><input type="button" value="❌" id=""></td>
+                            <form>
+                                <td><input type="number" value="{{product_id}}" id="f{{product_id}}"></td>
+                                <td><input type="text" value="{{product_name}}" id="f{{product_name}}"></td>
+                                <td><input type="" value="{{product_category}}" id="f{{product_category}}"></td>
+                                <td><input type="number" value="{{location_id}}" id="f{{location_id}}"></td>
+                                <td><input type="number" value="{{stored_quantity}}" id="f{{stored_quantity}}"></td>
+                                <td><input type="text" value="{{unit}}" id="f{{unit}}"></td>
+                                <td><input type="date" value="{{purchase_date}}" id="f{{purchase_date}}"></td>
+                                <td><input type="date" value="{{expiration_date}}" id="f{{expiration_date}}"></td>
+                                <td><input type="button" value="📝" id=""></td>
+                                <td><input type="button" value="❌" id=""></td>
+                            </form>
                         </tr>
                     {{/each}}
                 </tbody>
