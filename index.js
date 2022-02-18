@@ -62,6 +62,7 @@ var products = [
 
 var locations = [
   {location_id: "1", location_name: "Desert Cabinet", category: "Candy, Baked Good", product_id: "1, 2, 3", },
+  {location_id: "2", location_name: "Refridgerator", catergory: "Chilled goods", product_id: "NULL"}
 ];
 
 var recipes = [
@@ -69,7 +70,7 @@ var recipes = [
 ];
 
 var shopping = [
-  {purchase_date: "", meal_plan_range: ""},
+  {purchase_date: "2022-02-11", meal_plan_range: "2022-02-11 to 2022-02-12"},
 ];
 
 // Register Partials with Handlebars
