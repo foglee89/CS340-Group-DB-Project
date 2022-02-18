@@ -65,21 +65,19 @@
 
     {{#block "container__header"}}
     <header class="container__header u-full-width">
+        {{#block "container__main"}}
+            {{#*inline "navButton"}}
+                <a class="button" href=".{{route}}">{{name}}</a>
+            {{/inline}}
 
-        <div class="tabs five u-full-width">
-            <!-- Standard buttons -->
-            <a class="button" href="#">Anchor button</a>
-            <a class="button" href="#">Anchor button</a>
-            <a class="button" href="#">Anchor button</a>
-            <a class="button" href="#">Anchor button</a>
-            <a class="button" href="#">Anchor button</a>
-        </div>
+            {{#each sM}}
+                {{> navButton}}
+            {{/each}}
+    {{/block}}
     </header>
     {{/block}}
 
-    {{#block "container__main"}}
-        ...
-    {{/block}}
+    
 
     {{#block "content"}}
     <footer class="container__footer">

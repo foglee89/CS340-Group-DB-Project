@@ -55,9 +55,17 @@ var persons = [
 ];
 
 var products = [
-  { name: "Jelly", age: 20 },
-  { name: "Bread", age: 10 },
-  { name: "Peanutbutter", age: 40 },
+  {product_id: "1", product_name: "Chocolate", product_category: "Candy", location_id: "1", stored_quantity: "2", unit: "Bar(s)", purchase_date: "02172020", expiration_date: "05172020"},
+  {product_id: "2", product_name: "Marshmellows", product_category: "Candy", location_id: "1", stored_quantity: "1", unit: "Bag(s)", purchase_date: "02172020", expiration_date: "05172020"},
+  {product_id: "3", product_name: "Graham Crackers", product_category: "Baked Good", location_id: "1", stored_quantity: "1", unit: "Box(s)", purchase_date: "02172020", expiration_date: "05172020"},
+];
+
+var locations = [
+  {location_id: "1", location_name: "Desert Cabinet", category: "Candy, Baked Good", product_id: "1, 2, 3", },
+];
+
+var recipes = [
+
 ];
 
 // Register Partials with Handlebars
@@ -69,8 +77,9 @@ Handlebars.registerPartial(
 // === Endpoints ===
 
 app.get('/', (req, res) => {
-  res.render('layout', {
-    title: 'Users',
+  res.render('home', {
+    title: 'Home',
+    sM: siteMap,
     persons: persons
   });
 })
@@ -78,6 +87,7 @@ app.get('/', (req, res) => {
 app.get('/products', (req, res) => {
   res.render('products', {
     title: 'Products',
+    sM: siteMap,
     products: products
   });
 
@@ -88,6 +98,7 @@ app.get('/products', (req, res) => {
 app.get('/recipes', (req, res) => {
   res.render('recipes', {
     title: 'Recipes',
+    sM: siteMap,
     persons: persons
   });
 
@@ -98,7 +109,8 @@ app.get('/recipes', (req, res) => {
 app.get('/locations', (req, res) => {
   res.render('locations', {
     title: 'Locations',
-    persons: persons
+    sM: siteMap,
+    locations: locations
   });
 
   // TODO
@@ -108,6 +120,7 @@ app.get('/locations', (req, res) => {
 app.get('/mealplans', (req, res) => {
   res.render('mealplans', {
     title: 'Meal Plans',
+    sM: siteMap,
     persons: persons
   });
 
@@ -118,6 +131,7 @@ app.get('/mealplans', (req, res) => {
 app.get('/shopping', (req, res) => {
   res.render('shopping', {
     title: 'Shopping Lists',
+    sM: siteMap,
     persons: persons
   });
 
