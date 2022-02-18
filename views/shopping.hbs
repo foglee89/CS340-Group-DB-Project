@@ -18,12 +18,22 @@
                     </tr>
                 </thead>
                 <tbody>
+                        <tr>
+                            <form>
+                                <td><input type="date" value="{{purchase_date}}" id="f{{purchase_date}}"></td>
+                                <td><input type="number" value="{{meal_plan_range}}" id="{{meal_plan_range}}"></td>
+                                <td><input type="button" value="📝" id=""></td>
+                                <td><input type="button" value="❌" id=""></td>
+                            </form>
+                        </tr>
                     {{#each shopping}}
                         <tr>
-                            <td>{{purchase_date}}</td>
-                            <td>{{meal_plan_range}}</td>
-                            <td>📝</td>
-                            <td>❌</td>
+                            <form>
+                                <td><input type="date" value="{{purchase_date}}" id="f{{purchase_date}}"></td>
+                                <td><input type="number" value="{{meal_plan_range}}" id="{{meal_plan_range}}"></td>
+                                <td><input type="button" value="📝" id=""></td>
+                                <td><input type="button" value="❌" id=""></td>
+                            </form>
                         </tr>
                     {{/each}}
                 </tbody>
