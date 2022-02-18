@@ -36,6 +36,8 @@ app.engine('hbs', cons.handlebars);
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views');
 
+app.use(express.static('public'))
+
 // === Mock Data ===
 var persons = [
   { name: "Nils", age: 20 },
@@ -58,7 +60,7 @@ Handlebars.registerPartial(
 // === Endpoints ===
 
 app.get('/', (req, res) => {
-  res.render('page-a', {
+  res.render('skelayout', {
     title: 'Users',
     persons: persons
   });
@@ -94,9 +96,9 @@ app.get('/locations', (req, res) => {
 
 })
 
-app.use((req, res, next) => {
-  res.status(404).send("404: Sorry can't find that!")
-})
+// app.use((req, res, next) => {
+//   res.status(404).send("404: Sorry can't find that!")
+// })
 
 // Host it!
 app.listen(port, () => {
