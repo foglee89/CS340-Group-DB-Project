@@ -5,10 +5,7 @@
     {{#block "scripts"}}
     {{/block}}
  
-    {{#block "content"}}
-        <h1>
-            {{title}}
-        </h1>
+    {{#block "content" mode="append"}}
 
         {{#*inline "recipes-table"}}
             <table class="u-full-width">
@@ -18,15 +15,19 @@
                         <th>recipe_name</th>
                         <th>total_time</th>
                         <th>active_time</th>
+                        <th>edit</th>
+                        <th>delete</th>
                     </tr>
                 </thead>
                 <tbody>
                     {{#each recipes}}
                         <tr>
-                            <th>{{recipe_id}}<th>
-                            <th>{{recipe_name}}<th>
-                            <th>{{total_time}}<th>
-                            <th>{{active_time}}<th>
+                            <td>{{recipe_id}}<td>
+                            <td>{{recipe_name}}<td>
+                            <td>{{total_time}}<td>
+                            <td>{{active_time}}<td>
+                            <td>📝</td>
+                            <td>❌</td>
                         </tr>
                     {{/each}}
                 </tbody>
