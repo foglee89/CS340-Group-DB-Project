@@ -20,15 +20,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{#each locations}}
-                        <tr>
-                                <th>{{location_id}}</th>
-                                <th>{{location_name}}</th>
-                                <th>{{category}}</th>
-                                <th>{{product_id}}</th>
-                                <th>📝</th>
-                                <th>❌</th>
-                        </tr>
                         <tr>
                             <form>
                                 <td><input type="number">location_id<input></td>
@@ -39,6 +30,16 @@
                                 <td><input type="button">delete<input></td>
                             </form>
                         </tr>
+                    {{#each locations}}
+                        <tr>
+                                <th>{{location_id}}</th>
+                                <th>{{location_name}}</th>
+                                <th>{{category}}</th>
+                                <th>{{product_id}}</th>
+                                <th>📝</th>
+                                <th>❌</th>
+                        </tr>
+                        
                     {{/each}}
                 </tbody>
             </table>
