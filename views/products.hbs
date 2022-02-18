@@ -8,6 +8,7 @@
     {{#block "content" mode="append"}}
 
         {{#*inline "product-table"}}
+            <h5>Search or Add a Product</h5>
             <table class="u-full-width">
                 <thead>
                     <tr>
@@ -30,7 +31,17 @@
                             <td><input type="">product_category<input></td>
                             <td><input type="text">location_name<input></td>
                             <td><input type="number">stored_quantity<input></td>
-                            <td><input type="">unit<input></td>
+                            <td><label for="unit">Unit</label>
+                            <select name="unit" id="unit">
+                                <option value="cups">C - cups</option>
+                                <option value="oz">oz - ounces</option>
+                                <option value="grams">g - grams</option>
+                                <option value="kg">kg - kilograms</option>
+                                <option value="count">ct - count</option>
+                                <option value="tablespoon">Tbl - tablespoon</option>
+                                <option value="teaspoon">tsp - teaspoon</option>
+                            </select>
+                            </td>
                             <td><input type="date">purchase_date<input></td>
                             <td><input type="date">expiration_date<input></td>
                             <td>✔️</td>
@@ -38,6 +49,7 @@
                         </tr>
                 </tbody>
             </table>
+            <h5>Display, Update, or Delete a Product</h5>
             <table class="u-full-width">
                 <thead>
                     <tr>
