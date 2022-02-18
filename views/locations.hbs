@@ -20,14 +20,17 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {{#each locations}}
                         <tr>
                             <form>
-                                <td><input type="number">location_id<input></td>
-                                <td><input type="text">location_name<input></td>
-                                <td><input type="">category<input></td>
-                                <td><input type="number">product_id<input></td>
-                                <td><input type="button">edit<input></td>
-                                <td><input type="button">delete<input></td>
+                                <label for="f{{location_id}}">
+                                    <td><input type="number" value="{{location_id}}" id="f{{location_id}}"></td>
+                                </label>
+                                <td><input type="text" value="{{location_name}}" id="{{location_name}}"></td>
+                                <td><input type="" value="{{category}}" id="{{category}}"></td>
+                                <td><input type="number" value="{{product_id}}" id="{{product_id}}"></td>
+                                <td><input type="button" value="📝" id=""></td>
+                                <td><input type="button" value="❌" id=""></td>
                             </form>
                         </tr>
                     {{#each locations}}

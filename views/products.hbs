@@ -56,16 +56,16 @@
                 <tbody>
                     {{#each products}}
                         <tr>
-                            <td>{{product_id}}</td>
-                            <td>{{product_name}}</td>
-                            <td>{{product_category}}</td>
-                            <td>{{location_id}}</td>
-                            <td>{{stored_quantity}}</td>
-                            <td>{{unit}}</td>
-                            <td>{{purchase_date}}</td>
-                            <td>{{expiration_date}}</td>
-                            <td>📝</td>
-                            <td>❌</td>
+                            <td><input type="number" value="{{product_id}}" id="f{{product_id}}"></td>
+                            <td><input type="text" value="{{product_name}}" id="f{{product_name}}"></td>
+                            <td><input type="" value="{{product_category}}" id="f{{product_category}}"></td>
+                            <td><input type="number" value="{{location_id}}" id="f{{location_id}}"></td>
+                            <td><input type="number" value="{{stored_quantity}}" id="f{{stored_quantity}}"></td>
+                            <td><input type="text" value="{{unit}}" id="f{{unit}}"></td>
+                            <td><input type="date" value="{{purchase_date}}" id="f{{purchase_date}}"></td>
+                            <td><input type="date" value="{{expiration_date}}" id="f{{expiration_date}}"></td>
+                            <td><input type="button" value="📝" id=""></td>
+                            <td><input type="button" value="❌" id=""></td>
                         </tr>
                     {{/each}}
                 </tbody>
@@ -75,6 +75,8 @@
         {{> product-table}}
 
                 <!-- The above form looks like this -->
+        <!-- Always wrap checkbox and radio inputs in a label and use a <span class="label-body"> inside of it -->
+
         <!-- Note: The class .u-full-width is just a utility class shorthand for width: 100% -->
     {{/block}}
  
