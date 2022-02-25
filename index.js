@@ -18,14 +18,14 @@ const wax = require("wax-on");
 
 const cons = require('consolidate'),
       app = express(),
-      port = 3000;
+      port = 2056;
 
 // Configure Wax-On
 wax.on(Handlebars);
 wax.setLayoutPath(__dirname + '/views');
 
 Handlebars.registerPartial(
-  "person", 
+  "person",
   "{{person.name}} is {{person.age}} years old.\n"
 )
 
@@ -37,6 +37,8 @@ app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views');
 
 app.use(express.static('public'))
+
+app.use(express.static('views'))
 
 // === Mock Data ===
 var siteMap = [
@@ -75,7 +77,7 @@ var shopping = [
 
 // Register Partials with Handlebars
 Handlebars.registerPartial(
-  "product", 
+  "product",
   "{{product.name}} is {{product.age}} days old.\n"
 )
 
@@ -198,7 +200,7 @@ app.get('/shopping', (req, res) => {
 })
 
 app.delete('/shopping', (req, res) => {
-  
+
 })
 
 app.use((req, res, next) => {
