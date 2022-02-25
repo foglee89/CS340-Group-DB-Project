@@ -50,6 +50,8 @@ var siteMap = [
   // { name: "Meal Plans",     route: "/mealplans", }
 ];
 
+/*
+MOCK DATA FROM STATIC DRAFT
 var persons = [
   { name: "Nils", age: 20 },
   { name: "Teddy", age: 10 },
@@ -68,12 +70,13 @@ var locations = [
 ];
 
 var recipes = [
-  {recipe_id:  "1", recipe_name:  "Smores", total_time:  "10 minutes", active_time:  "10 minutes", },
+  {recipe_id:  "1", recipe_name:  "Smores", total_time:  "10M", active_time:  "10M", },
 ];
 
 var shopping = [
   {purchase_date: "2022-02-11", meal_plan_range: "2022-02-11 to 2022-02-12"},
 ];
+*/
 
 // Register Partials with Handlebars
 Handlebars.registerPartial(

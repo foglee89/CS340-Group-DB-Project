@@ -8,48 +8,6 @@
     {{#block "content" mode="append"}}
 
         {{#*inline "product-table"}}
-            <h5>Search or Add a Product</h5>
-            <table class="u-full-width">
-                <thead>
-                    <tr>
-                        <th>product_id</th>
-                        <th>product_name</th>
-                        <th>product_category</th>
-                        <th>location_id</th>
-                        <th>stored_quantity</th>
-                        <th>unit</th>
-                        <th>purchase_date</th>
-                        <th>expiration_date</th>
-                        <th>add</th>
-                        <th>search</th>
-                    </tr>
-                </thead>
-                <tbody>
-                        <tr>
-                            <td><input type="number">product_id<input></td>
-                            <td><input type="text">product_name<input></td>
-                            <td><input type="">product_category<input></td>
-                            <td><input type="text">location_name<input></td>
-                            <td><input type="number">stored_quantity<input></td>
-                            <td><label for="unit">Unit</label>
-                            <select name="unit" id="unit">
-                                <option value="cups">C - cups</option>
-                                <option value="oz">oz - ounces</option>
-                                <option value="grams">g - grams</option>
-                                <option value="kg">kg - kilograms</option>
-                                <option value="count">ct - count</option>
-                                <option value="tablespoon">Tbl - tablespoon</option>
-                                <option value="teaspoon">tsp - teaspoon</option>
-                            </select>
-                            </td>
-                            <td><input type="date">purchase_date<input></td>
-                            <td><input type="date">expiration_date<input></td>
-                            <td>✔️</td>
-                            <td>🔍</td>
-                        </tr>
-                </tbody>
-            </table>
-            <h5>Display, Update, or Delete a Product</h5>
             <table class="u-full-width">
                 <thead>
                     <tr>
@@ -74,7 +32,18 @@
                                 <td><input type="" value="{{product_category}}" id="f{{product_category}}"></td>
                                 <td><input type="number" value="{{location_id}}" id="f{{location_id}}"></td>
                                 <td><input type="number" value="{{stored_quantity}}" id="f{{stored_quantity}}"></td>
-                                <td><input type="text" value="{{unit}}" id="f{{unit}}"></td>
+                                <td><label for="unit"></label>
+                                <select name="unit" id="unit">
+                                    <option disabled selected value> select unit of measure </option>
+                                    <option value="cups">C - cups</option>
+                                    <option value="oz">oz - ounces</option>
+                                    <option value="grams">g - grams</option>
+                                    <option value="kg">kg - kilograms</option>
+                                    <option value="count">ct - count</option>
+                                    <option value="tablespoon">Tbl - tablespoon</option>
+                                    <option value="teaspoon">tsp - teaspoon</option>
+                                </select>
+                                </td>
                                 <td><input type="date" value="{{purchase_date}}" id="f{{purchase_date}}"></td>
                                 <td><input type="date" value="{{expiration_date}}" id="f{{expiration_date}}"></td>
                                 <td><input type="button" value="📝" id=""></td>
