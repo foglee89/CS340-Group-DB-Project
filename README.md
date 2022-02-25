@@ -47,15 +47,15 @@ Course-level requirements version
    * Due: Jan. 27, 2022
  - [x] Project Step 2 Final Version: ERD & Schema
    * Due: Feb. 3, 2022
- - [ ] Project Step 3 Draft Version: Design HTML Interface
+ - [x] Project Step 3 Draft Version: Design HTML Interface
    * Due: Feb. 10, 2022
-   - [ ] Build Ingredients Master Panel
-   - [ ] Build Locations Master Panel
-   - [ ] Build Recipe Master Panel
-   - [ ] URL to HTML listing of all pages
-   - [ ] PDF of Project Outline and Database Outine, ERD, Schema, and Fixes based on feedback
-   - [ ] Ed Discussion post
- - [ ] Project Step 3 Final Version: Design HTML Interface
+   - [x] Build Ingredients Master Panel
+   - [x] Build Locations Master Panel
+   - [x] Build Recipe Master Panel
+   - [x] URL to HTML listing of all pages
+   - [x] PDF of Project Outline and Database Outine, ERD, Schema, and Fixes based on feedback
+   - [x] Ed Discussion post
+ - [x] Project Step 3 Final Version: Design HTML Interface
    * Due: Feb. 20, 2022 
  - [ ] Project Step 4 Draft Version: DML and DDL Queries
    * Due: Feb. 24, 2022
