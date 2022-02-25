@@ -66,7 +66,7 @@ var locations = [
 ];
 
 var recipes = [
-  {recipe_id:  "1", recipe_name:  "Smores", total_time:  "10 minutes", active_time:  "10 minutes", },
+  {recipe_id:  "1", recipe_name:  "Smores", total_time:  "10M", active_time:  "10M", },
 ];
 
 var shopping = [
