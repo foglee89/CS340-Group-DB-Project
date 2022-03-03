@@ -28,7 +28,7 @@ CREATE TABLE Products (
     product_name VARCHAR(50) NOT NULL,
     product_category ENUM('Produce: Fruit', 'Produce: Vegetables', 
         'Canned Goods', 'Sweets & Snacks', 'Meat, Poultry, & Seafood', 
-        'Eggs & Dairy', 'Grains & Bread', 'Condiments & Sauces', 'Dry Goods', 
+        'Eggs & Dairy', 'Grains & Breads', 'Condiments & Sauces', 'Dry Goods', 
         'Alcohol', 'Drinks & Juices', 'Spices', 'Pre-Packaged Meals'),
     location_id INT,
     stored_quantity DECIMAL NOT NULL,
