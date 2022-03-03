@@ -4,13 +4,13 @@
 -- Locations Table
 --
 
+DROP TABLE IF EXISTS Locations;
 CREATE TABLE Locations (
     location_id INT NOT NULL AUTO_INCREMENT,
     location_name VARCHAR(50) NOT NULL,
-    -- categories
-    -- product_id
     PRIMARY KEY (location_id)
-) ENGINE=InnoDB;
+);
+--) ENGINE=InnoDB;
 
 --
 -- Fill Locations Table
@@ -24,26 +24,28 @@ INSERT INTO Locations (location_name) VALUES
     ('Pantry'),
     ('Spice Rack'),
     ('Cupboard'),
-    ('Desert Cabinet');
+    ('Dessert Cabinet');
 
 
--------------------------------------------------------------------------------
 --
 -- Products Table
 --
 
+DROP TABLE IF EXISTS `Products`;
 CREATE TABLE Products (
     product_id INT NOT NULL AUTO_INCREMENT,
     product_name VARCHAR(50) NOT NULL,
-    product_category ENUM('Produce: Fruit', 'Produce: Vegetables', 
-        'Canned Goods', 'Sweets & Snacks', 'Meat, Poultry, & Seafood', 
-        'Eggs & Dairy', 'Grains & Bread', 'Condiments & Sauces', 'Dry Goods', 
-        'Alcohol', 'Drinks & Juices', 'Spices', 'Pre-Packaged Meals'),
+    product_category VARCHAR(50) NOT NULL,
+    -- product_category ENUM('Produce: Fruit', 'Produce: Vegetables', 
+    --    'Canned Goods', 'Sweets & Snacks', 'Meat, Poultry, & Seafood', 
+    --    'Eggs & Dairy', 'Grains & Bread', 'Condiments & Sauces', 'Dry Goods', 
+    --    'Alcohol', 'Drinks & Juices', 'Spices', 'Pre-Packaged Meals'),
     location_id INT,
     stored_quantity DECIMAL NOT NULL,
-    unit ENUM('oz - ounces', 'g - grams', 'kg - kilograms', 'ct - count', 'To Taste',
-        'bx - box', 'bg - bag', 'cn - can', 'btl - bottle', 'jr - jar', 'C - cup',
-        'bch - bunch', 'lbs - pounds' 'Tbl - tablespoon', 'tsp - teaspoon'),
+    unit VARCHAR(50) NOT NULL,
+    -- unit ENUM('oz - ounces', 'g - grams', 'kg - kilograms', 'ct - count', 'To Taste',
+    --    'bx - box', 'bg - bag', 'cn - can', 'btl - bottle', 'jr - jar', 'C - cup',
+    --    'bch - bunch', 'lbs - pounds' 'Tbl - tablespoon', 'tsp - teaspoon'),
     purchase_date DATE NOT NULL,
     expiration_date DATE NOT NULL,
     PRIMARY KEY (product_id),
@@ -56,7 +58,7 @@ CREATE TABLE Products (
 
 INSERT INTO Products (product_name, product_category, location_id, stored_quantity, unit, purchase_date, expiration_date) VALUES 
     ('Chocolate Bar', 'Sweets & Snacks', '8','4', 'ct - count', '2022-01-29', '2023-07-01'),
-    ('Marshmellows', 'Sweets & Snacks', '8','1', 'bg - bag', '2022-01-29', '2023-07-05'),
+    ('Marshmallows', 'Sweets & Snacks', '8','1', 'bg - bag', '2022-01-29', '2023-07-05'),
     ('Graham Crackers', 'Sweets & Snacks', '8','1', 'bx - box', '2022-01-29', '2022-10-01'),
     ('Whole Grain Bread (loaf)', 'Grains & Breads', '7', '1', 'ct - count', '2022-02-21', '2022-03-21'),
     ('Goat Cheese', 'Eggs & Dairy', '1', '10', 'oz - ounces', '2022-02-21', '2022-03-07'),
@@ -68,11 +70,11 @@ INSERT INTO Products (product_name, product_category, location_id, stored_quanti
     ('Bacon', 'Meat, Poultry, & Seafood', '2', '8', 'oz - ounces', '2022-02-21');
 
 
--------------------------------------------------------------------------------
 --
 -- Recipes Table
 --
 
+DROP TABLE IF EXISTS `Recipes`;
 CREATE TABLE Recipes (
     recipe_id INT NOT NULL AUTO_INCREMENT,
     recipe_name VARCHAR(50) NOT NULL,
@@ -95,18 +97,19 @@ INSERT INTO Recipes (recipe_name, total_time, active_time, servings) VALUES
     ('Quiche - Mushroom, Bacon, Leek', '65', '25', '6');
 
 
--------------------------------------------------------------------------------
 --
 -- RecipesProducts Table
 --
 
+DROP TABLE IF EXISTS `RecipesProducts`;
 CREATE TABLE RecipesProducts (
     recipe_id INT NOT NULL AUTO_INCREMENT,
     product_id INT NOT NULL AUTO_INCREMENT,
     cooking_quantity INT NOT NULL,
-    unit ENUM('oz - ounces', 'g - grams', 'kg - kilograms', 'ct - count', 'To Taste',
-        'bx - box', 'bg - bag', 'cn - can', 'btl - bottle', 'jr - jar', 'C - cup',
-        'bch - bunch', 'lbs - pounds' 'Tbl - tablespoon', 'tsp - teaspoon'),
+    unit VARCHAR(50) NOT NULL,
+    -- unit ENUM('oz - ounces', 'g - grams', 'kg - kilograms', 'ct - count', 'To Taste',
+    --    'bx - box', 'bg - bag', 'cn - can', 'btl - bottle', 'jr - jar', 'C - cup',
+    --    'bch - bunch', 'lbs - pounds' 'Tbl - tablespoon', 'tsp - teaspoon'),
     PRIMARY KEY (recipe_id, product_id),
     FOREIGN KEY (recipe_id) REFERENCES Recipes(recipe_id) ON DELETE CASCADE,
     FOREIGN KEY (product_id) REFERENCES Products(product_id)
@@ -129,11 +132,11 @@ INSERT INTO RecipesProducts (recipe_id, product_id, cooking_quantity, unit) VALU
     ('5', '10', '1', 'To Taste');
 
 
--------------------------------------------------------------------------------
 --
 -- ShoppingLists Table
 --
 
+DROP TABLE IF EXISTS `ShoppingLists`;
 CREATE TABLE ShoppingLists (
     purchase_date DATE NOT NULL,
     -- potentially different type depending on how SQL handles date ranges
@@ -152,18 +155,19 @@ INSERT INTO ShoppingLists (purchase_date, meal_plan_range) VALUES
     ('2022-02-21', '2022-03-02');
 
 
--------------------------------------------------------------------------------
 --
 -- ShoppingListProducts Table
 --
 
+DROP TABLE IF EXISTS `ShoppingListProducts`;
 CREATE TABLE ShoppingListProducts (
     purchase_date DATE NOT NULL, 
     product_id INT NOT NULL,
     purchase_quantity INT NOT NULL,
-    unit ENUM('oz - ounces', 'g - grams', 'kg - kilograms', 'ct - count', 'To Taste',
-        'bx - box', 'bg - bag', 'cn - can', 'btl - bottle', 'jr - jar', 'C - cup',
-        'bch - bunch', 'lbs - pounds' 'Tbl - tablespoon', 'tsp - teaspoon'),
+    unit VARCHAR(50) NOT NULL,
+    -- unit ENUM('oz - ounces', 'g - grams', 'kg - kilograms', 'ct - count', 'To Taste',
+    --    'bx - box', 'bg - bag', 'cn - can', 'btl - bottle', 'jr - jar', 'C - cup',
+    --    'bch - bunch', 'lbs - pounds' 'Tbl - tablespoon', 'tsp - teaspoon'),
     PRIMARY KEY (purchase_date, product_id),
     FOREIGN KEY (purchase_date) REFERENCES ShoppingLists(purchase_date),
     FOREIGN KEY (product_id) REFERENCES Products(product_id)
@@ -181,5 +185,3 @@ INSERT INTO ShoppingListProducts (purchase_date, product_id, purchase_quantity, 
     ('2022-02-21', '4', '10', 'oz - ounces'),
     ('2022-02-21', '4', '12', 'oz - ounces'),
     ('2022-02-21', '4', '1', 'bch - bunch');
-
--------------------------------------------------------------------------------
