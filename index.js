@@ -131,6 +131,9 @@ app.post('/products/delete', (req, res) => {
 
 // Read 	  SELECT  GET
 app.get('/products', (req, res) => {
+  var action = req.query.action;
+  console.log(action)
+
   res.render('products', {
     title: 'Products',
     sM: siteMap,
@@ -170,6 +173,9 @@ app.post('/recipes/delete', (req, res) => {
   res.redirect('/recipes/?valid=' + actionString)
 
 app.get('/recipes', (req, res) => {
+  var action = req.query.action;
+  console.log(action)
+
   res.render('recipes', {
     title: 'Recipes',
     sM: siteMap,
@@ -211,6 +217,9 @@ app.post('/locations/delete', (req, res) => {
 
 // Read 	  SELECT  GET
 app.get('/locations', (req, res) => {
+  var action = req.query.action;
+  console.log(action)
+
   res.render('locations', {
     title: 'Locations',
     sM: siteMap,
@@ -224,6 +233,9 @@ app.get('/locations', (req, res) => {
 // === Meal Plans (Unused) ===
 
 app.get('/mealplans', (req, res) => {
+  var action = req.query.action;
+  console.log(action)
+
   res.render('mealplans', {
     title: 'Meal Plans',
     sM: siteMap,
@@ -261,6 +273,9 @@ app.post('/shopping/delete', (req, res) => {
   res.redirect('/shopping/?valid=' + actionString)
 
 app.get('/shopping', (req, res) => {
+  var action = req.query.action;
+  console.log(action)
+  
   res.render('shopping', {
     title: 'Shopping Lists',
     sM: siteMap,
