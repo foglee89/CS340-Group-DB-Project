@@ -54,18 +54,7 @@ var siteMap = [
 ];
 
 
-app.use(function(req,res){
-  res.status(404);
-  res.render('404');
-});
-
-app.use(function(err, req, res, next){
-  console.error(err.stack);
-  res.status(500);
-  res.render('500');
-});
-/*
-MOCK DATA FROM STATIC DRAFT
+// MOCK DATA FROM STATIC DRAFT
 var persons = [
   { name: "Nils", age: 20 },
   { name: "Teddy", age: 10 },
@@ -90,7 +79,7 @@ var recipes = [
 var shopping = [
   {purchase_date: "2022-02-11", meal_plan_range: "2022-02-11 to 2022-02-12"},
 ];
-*/
+
 
 // Register Partials with Handlebars
 Handlebars.registerPartial(
@@ -108,6 +97,9 @@ Handlebars.registerPartial(
 // --- /Notes
 
 app.get('/', (req, res) => {
+  var action = req.query.action;
+  console.log(action)
+
   res.render('home', {
     title: 'Home',
     sM: siteMap,
@@ -118,12 +110,36 @@ app.get('/', (req, res) => {
 // === Products ===
 
 // Create 	INSERT/UPDATE  PUT
-app.put('/products', (req, res) => {
-  res.redirect("/products")
+app.post('/products/create', (req, res) => {
+  var actionString = encodeURIComponent(`
+  INSERT INTO Products (product_name, product_category, stored_quantity, unit, purchase_date, expiration_date) 
+  VALUES (:fproduct_name, :fproduct_category, :fstored_quantity, :funit, :fpurchase_date, :fexpiration_date); `);
+  res.redirect('/products/?valid=' + actionString)
+})
+// Read
+app.post('/products/read', (req, res) => {
+  var actionString = encodeURIComponent(`SELECT * FROM Products;`);
+  res.redirect('/products/?valid=' + actionString)
+})
+// Update
+app.post('/products/update', (req, res) => {
+  var actionString = encodeURIComponent(`
+  UPDATE Products
+  SET product_name = :fproduct_name, product_category = :fproduct_category, stored_quantity = :fstored_quantity, unit = :funit, purchase_date = :fpurchase_date, expiration_date = :fexpiration_date
+  WHERE product_id = :fproduct_id; `);
+  res.redirect('/products/?valid=' + actionString)
+})
+// Delete
+app.post('/products/delete', (req, res) => {
+  var actionString = encodeURIComponent(`DELETE FROM Products WHERE product_id = :fproduct_id; `);
+  res.redirect('/products/?valid=' + actionString)
 })
 
 // Read 	  SELECT  GET
 app.get('/products', (req, res) => {
+  var action = req.query.action;
+  console.log(action)
+
   res.render('products', {
     title: 'Products',
     sM: siteMap,
@@ -134,20 +150,39 @@ app.get('/products', (req, res) => {
 
 })
 
-// Delete 	DELETE  DELETE
-app.delete('/products', (req, res) => {
-  res.redirect("/products")
-})
-
 // === Recipes ===
 
 // Create 	INSERT/UPDATE  PUT
-app.put('/recipes', (req, res) => {
-  res.redirect("/recipes")
+app.post('/recipes/create', (req, res) => {
+  var actionString = encodeURIComponent(`
+  INSERT INTO Recipes (recipe_name, total_time, active_time)
+  VALUES (:frecipe_name, :ftotal_time, :factive_time); `);
+  res.redirect('/recipes/?valid=' + actionString)
+})
+// Read
+app.post('/recipes/read', (req, res) => {
+  var actionString = encodeURIComponent(`SELECT * FROM Recipes;`);
+  res.redirect('/recipes/?valid=' + actionString)
+})
+// Update
+app.post('/recipes/update', (req, res) => {
+  var actionString = encodeURIComponent(`
+  UPDATE Recipes
+  SET recipe_name = :frecipe_name, total_time = :ftotal_time, active_time = :factive_time
+  WHERE recipe_id = :frecipe_id; `);
+  res.redirect('/recipes/?valid=' + actionString)
+})
+// Delete
+app.post('/recipes/delete', (req, res) => {
+  var actionString = encodeURIComponent(`
+  DELETE FROM Recipes WHERE recipe_id = :frecipe_id;`);
+  res.redirect('/recipes/?valid=' + actionString)
 })
 
-// Read 	  SELECT  GET
 app.get('/recipes', (req, res) => {
+  var action = req.query.action;
+  console.log(action)
+
   res.render('recipes', {
     title: 'Recipes',
     sM: siteMap,
@@ -157,20 +192,41 @@ app.get('/recipes', (req, res) => {
   // TODO
 
 })
-// Delete 	DELETE  DELETE
-app.delete('/recipes', (req, res) => {
-  res.redirect("/recipes")
-})
+
 
 // === Locations ===
-
 // Create 	INSERT/UPDATE  PUT
-app.put('/locations', (req, res) => {
-  res.redirect("/locations")
+app.post('/locations/create', (req, res) => {
+  var actionString = encodeURIComponent(`
+  INSERT INTO Locations (location_name)
+  VALUES  (:flocation_name); `);
+  res.redirect('/locations/?valid=' + actionString)
+})
+// Read
+app.post('/locations/read', (req, res) => {
+  var actionString = encodeURIComponent(`SELECT * FROM Locations; `);
+  res.redirect('/locations/?valid=' + actionString)
+})
+// Update
+app.post('/locations/update', (req, res) => {
+  var actionString = encodeURIComponent(`
+  UPDATE Locations
+  SET location_name = :flocation_name
+  WHERE location_id = :flocation_id; `);
+  res.redirect('/locations/?valid=' + actionString)
+})
+// Delete
+app.post('/locations/delete', (req, res) => {
+  var actionString = encodeURIComponent(`
+  DELETE FROM Locations WHERE location_id = :flocation_id; `);
+  res.redirect('/locations/?valid=' + actionString)
 })
 
 // Read 	  SELECT  GET
 app.get('/locations', (req, res) => {
+  var action = req.query.action;
+  console.log(action)
+
   res.render('locations', {
     title: 'Locations',
     sM: siteMap,
@@ -181,14 +237,12 @@ app.get('/locations', (req, res) => {
 
 })
 
-// Delete 	DELETE  DELETE
-app.delete('/locations', (req, res) => {
-  res.redirect("/locations")
-})
-
 // === Meal Plans (Unused) ===
 
 app.get('/mealplans', (req, res) => {
+  var action = req.query.action;
+  console.log(action)
+
   res.render('mealplans', {
     title: 'Meal Plans',
     sM: siteMap,
@@ -199,13 +253,36 @@ app.get('/mealplans', (req, res) => {
 
 })
 
-// === Shopping ===
-
-app.put('/shopping', (req, res) => {
-  res.redirect("/shopping")
+// Create 	INSERT/UPDATE  PUT
+app.post('/shopping/create', (req, res) => {
+  var actionString = encodeURIComponent(`
+  INSERT INTO ShoppingLists (purchase_date, meal_plan_range)
+  VALUES (:fpurchase_date, :fmeal_plan_range); `);
+  res.redirect('/shopping/?valid=' + actionString)
+})
+// Read
+app.post('/shopping/read', (req, res) => {
+  var actionString = encodeURIComponent(`SELECT * FROM ShoppingLists;`);
+  res.redirect('/shopping/?valid=' + actionString)
+})
+// Update
+app.post('/shopping/update', (req, res) => {
+  var actionString = encodeURIComponent(`
+  UPDATE ShoppingLists
+  SET meal_plan_range = :fmeal_plan_range
+  WHERE purchase_date = :fpurchase_date; `);
+  res.redirect('/shopping/?valid=' + actionString)
+})
+// Delete
+app.post('/shopping/delete', (req, res) => {
+  var actionString = encodeURIComponent(`
+  DELETE FROM ShoppingLists WHERE purchase_date = :fpurchase_date;`);
+  res.redirect('/shopping/?valid=' + actionString)
 })
 
 app.get('/shopping', (req, res) => {
+  var action = req.query.action
+  console.log(action)
   res.render('shopping', {
     title: 'Shopping Lists',
     sM: siteMap,
@@ -217,7 +294,7 @@ app.get('/shopping', (req, res) => {
 })
 
 app.delete('/shopping', (req, res) => {
-  
+  // ?action=' + actionString
 })
 
 app.use((req, res, next) => {

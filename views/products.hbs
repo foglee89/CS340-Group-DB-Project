@@ -27,7 +27,7 @@
                 <tbody>
                         {{!-- The Create New Overload --}}
                         <tr>
-                            <form>
+                            <form method="POST">
                                 <!-- <td><input type="number" value="{{product_id}}" id="f{{product_id}}"></td> -->
                                 <td><input type="text" value="{{product_name}}" id="{{product_name}}"></td>
                                 <select name="product_category"> 
@@ -52,14 +52,14 @@
                                 </select>
                                 <td><input type="date" value="{{purchase_date}}" id="{{purchase_date}}"></td>
                                 <td><input type="date" value="{{expiration_date}}" id="{{expiration_date}}"></td>
-                                <td><input type="button" value="📝" onclick=""></td>
-                                <td><input type="button" value="❌" onclick=""></td>
+                                <td><input type="submit" value="📝" onclick=""></td>
+                                <td><input type="submit" value="❌" onclick=""></td>
                             </form>
                         </tr>
                         {{!-- Per entry goodness --}}
                     {{#each products}}
                         <tr>
-                            <form>
+                            <form method="POST">
                                 <!-- <td><input type="number" value="{{product_id}}" id="f{{product_id}}"></td> -->
                                 <td><input type="text" value="{{product_name}}" id="{{product_name}}"></td>
                                 <select name="product_category"> 
@@ -89,8 +89,8 @@
                                 </select>
                                 <td><input type="date" value="{{purchase_date}}" id="{{purchase_date}}"></td>
                                 <td><input type="date" value="{{expiration_date}}" id="{{expiration_date}}"></td>
-                                <td><input type="button" value="📝" onclick="updateProduct"></td>
-                                <td><input type="button" value="❌" onclick="deleteProduct"></td>
+                                <td><input type="submit" value="📝" onclick="updateProduct"></td>
+                                <td><input type="submit" value="❌" onclick="deleteProduct"></td>
                             </form>
                         </tr>
                     {{/each}}
