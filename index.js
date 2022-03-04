@@ -48,8 +48,8 @@ var siteMap = [
   // { name: "Meal Plans",     route: "/mealplans", }
 ];
 
-/*
-MOCK DATA FROM STATIC DRAFT
+
+// MOCK DATA FROM STATIC DRAFT
 var persons = [
   { name: "Nils", age: 20 },
   { name: "Teddy", age: 10 },
@@ -74,7 +74,7 @@ var recipes = [
 var shopping = [
   {purchase_date: "2022-02-11", meal_plan_range: "2022-02-11 to 2022-02-12"},
 ];
-*/
+
 
 // Register Partials with Handlebars
 Handlebars.registerPartial(
@@ -92,6 +92,9 @@ Handlebars.registerPartial(
 // --- /Notes
 
 app.get('/', (req, res) => {
+  var action = req.query.action;
+  console.log(action)
+
   res.render('home', {
     title: 'Home',
     sM: siteMap,
@@ -120,7 +123,9 @@ app.get('/products', (req, res) => {
 
 // Delete 	DELETE  DELETE
 app.delete('/products', (req, res) => {
-  res.redirect("/products")
+  var actionString = encodeURIComponent('something that would break');
+
+  res.redirect('/products/?action=' + actionString)
 })
 
 // === Recipes ===
@@ -143,7 +148,7 @@ app.get('/recipes', (req, res) => {
 })
 // Delete 	DELETE  DELETE
 app.delete('/recipes', (req, res) => {
-  res.redirect("/recipes")
+  res.redirect("/recipes?action=' + actionString")
 })
 
 // === Locations ===
@@ -167,7 +172,7 @@ app.get('/locations', (req, res) => {
 
 // Delete 	DELETE  DELETE
 app.delete('/locations', (req, res) => {
-  res.redirect("/locations")
+  res.redirect("/locations/?action=' + actionString")
 })
 
 // === Meal Plans (Unused) ===
@@ -201,7 +206,7 @@ app.get('/shopping', (req, res) => {
 })
 
 app.delete('/shopping', (req, res) => {
-  
+  // ?action=' + actionString
 })
 
 app.use((req, res, next) => {

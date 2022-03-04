@@ -21,26 +21,26 @@
                 </thead>
                 <tbody>
                         <tr>
-                            <form>
+                            <form method="POST>
                                 <td><input type="number" value="" id=""></td>
                                 <td><input type="text" value="" id=""></td>
                                 <td><input type="" value="" id=""></td>
                                 <td><input type="number" value="" id=""></td>
-                                <td><input type="button" value="📝" id=""></td>
-                                <td><input type="button" value="❌" id=""></td>
+                                <td><input type="submit" value="📝" id=""></td>
+                                <td><input type="submit" value="❌" id="" method="DELETE"></td>
                             </form>
                         </tr>
                     {{#each locations}}
                         <tr>
-                            <form>
+                            <form method="POST>
                                 <label for="f{{location_id}}">
                                     <td><input type="number" value="{{location_id}}" id="f{{location_id}}"></td>
                                 </label>
                                 <td><input type="text" value="{{location_name}}" id="{{location_name}}"></td>
                                 <td><input type="" value="{{category}}" id="{{category}}"></td>
                                 <td><input type="number" value="{{product_id}}" id="{{product_id}}"></td>
-                                <td><input type="button" value="📝" id=""></td>
-                                <td><input type="button" value="❌" id=""></td>
+                                <td><input type="submit" value="📝" id=""></td>
+                                <td><input type="submit" value="❌" id="" method="DELETE"></td>
                             </form>
                         </tr>
                     {{/each}}
