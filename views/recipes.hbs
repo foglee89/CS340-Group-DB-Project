@@ -21,24 +21,24 @@
                 </thead>
                 <tbody>
                         <tr>
-                            <form method="POST>
+                            <form method="POST">
                                 <td><input type="number" value="" id=""></td>
                                 <td><input type="text" value="" id=""></td>
                                 <td><input type="duration" value="" id=""></td>
                                 <td><input type="duration" value="" id=""></td>
                                 <td><input type="submit" value="📝" id=""></td>
-                                <td><input type="submit" value="❌" id="" method="DELETE"></td>
+                                <td><input type="submit" value="❌" id=""></td>
                             </form>
                         </tr>
                     {{#each recipes}}
                         <tr>
-                            <form method="POST>
+                            <form method="POST">
                                 <td><input type="number" value="{{recipe_id}}" id="f{{recipe_id}}"></td>
                                 <td><input type="text" value="{{recipe_name}}" id="{{recipe_name}}"></td>
                                 <td><input type="duration" value="{{total_time}}" id="{{total_time}}"></td>
                                 <td><input type="duration" value="{{total_time}}" id="{{total_time}}"></td>
                                 <td><input type="submit" value="📝" id=""></td>
-                                <td><input type="submit" value="❌" id="" method="DELETE"></td>
+                                <td><input type="submit" value="❌" id=""></td>
                             </form>
                         </tr>
                     {{/each}}

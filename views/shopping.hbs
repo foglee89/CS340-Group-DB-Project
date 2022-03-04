@@ -23,16 +23,16 @@
                                 <td><input type="date" value="{{purchase_date}}" id="f{{purchase_date}}"></td>
                                 <td><input type="number" value="{{meal_plan_range}}" id="{{meal_plan_range}}"></td>
                                 <td><input type="button" value="📝" id=""></td>
-                                <td><input type="button" value="❌" id="" method="DELETE"></td>
+                                <td><input type="submit" value="❌" id="" formaction="/shopping/delete"></td>
                             </form>
                         </tr>
                     {{#each shopping}}
                         <tr>
-                            <form method="POST>
+                            <form method="POST">
                                 <td><input type="date" value="{{purchase_date}}" id="f{{purchase_date}}"></td>
                                 <td><input type="number" value="{{meal_plan_range}}" id="{{meal_plan_range}}"></td>
                                 <td><input type="button" value="📝" id=""></td>
-                                <td><input type="button" value="❌" id="" method="DELETE"></td>
+                                <td><input type="submit" value="❌" id="" formaction="/shopping/delete"></td>
                             </form>
                         </tr>
                     {{/each}}

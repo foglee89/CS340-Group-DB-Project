@@ -128,6 +128,7 @@ app.post('/products/update', (req, res) => {
 app.post('/products/delete', (req, res) => {
   var actionString = encodeURIComponent(`DELETE FROM Products WHERE product_id = :fproduct_id; `);
   res.redirect('/products/?valid=' + actionString)
+})
 
 // Read 	  SELECT  GET
 app.get('/products', (req, res) => {
@@ -171,6 +172,7 @@ app.post('/recipes/delete', (req, res) => {
   var actionString = encodeURIComponent(`
   DELETE FROM Recipes WHERE recipe_id = :frecipe_id;`);
   res.redirect('/recipes/?valid=' + actionString)
+})
 
 app.get('/recipes', (req, res) => {
   var action = req.query.action;
@@ -271,11 +273,11 @@ app.post('/shopping/delete', (req, res) => {
   var actionString = encodeURIComponent(`
   DELETE FROM ShoppingLists WHERE purchase_date = :fpurchase_date;`);
   res.redirect('/shopping/?valid=' + actionString)
+})
 
 app.get('/shopping', (req, res) => {
-  var action = req.query.action;
+  var action = req.query.action
   console.log(action)
-  
   res.render('shopping', {
     title: 'Shopping Lists',
     sM: siteMap,
