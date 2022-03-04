@@ -11,34 +11,37 @@
             <table class="u-full-width">
                 <thead>
                     <tr>
-                        <th>recipe_id</th>
-                        <th>recipe_name</th>
-                        <th>total_time</th>
-                        <th>active_time</th>
-                        <th>edit</th>
-                        <th>delete</th>
+                        <!-- <th>recipe_id</th> -->
+                        <th>Recipe</th>
+                        <th>Total Time</th>
+                        <th>Active Time</th>
+                        <th>Servings</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
                         <tr>
                             <form>
-                                <td><input type="number" value="" id=""></td>
-                                <td><input type="text" value="" id=""></td>
-                                <td><input type="duration" value="" id=""></td>
-                                <td><input type="duration" value="" id=""></td>
-                                <td><input type="button" value="📝" id=""></td>
-                                <td><input type="button" value="❌" id=""></td>
+                                <!-- <td><input type="number" value="" id=""></td> -->
+                                <td><input type="text" value="{{recipe_name}}" id="{{recipe_name}}"></td>
+                                <td><input type="duration" value="{{total_time}}" id="{{total_time}}"></td>
+                                <td><input type="duration" value="{{active_time}}" id="{{active_time}}"></td>
+                                <td><input type="number" value="{{servings}}" id="{{servings}}"></td>
+                                <td><input type="button" value="📝" onclick=""></td>
+                                <td><input type="button" value="❌" onclick=""></td>
                             </form>
                         </tr>
                     {{#each recipes}}
                         <tr>
                             <form>
-                                <td><input type="number" value="{{recipe_id}}" id="f{{recipe_id}}"></td>
+                                <!-- <td><input type="number" value="{{recipe_id}}" id="f{{recipe_id}}"></td> -->
                                 <td><input type="text" value="{{recipe_name}}" id="{{recipe_name}}"></td>
                                 <td><input type="duration" value="{{total_time}}" id="{{total_time}}"></td>
-                                <td><input type="duration" value="{{total_time}}" id="{{total_time}}"></td>
-                                <td><input type="button" value="📝" id=""></td>
-                                <td><input type="button" value="❌" id=""></td>
+                                <td><input type="duration" value="{{active_time}}" id="{{active_time}}"></td>
+                                <td><input type="number" value="{{servings}}" id="{{servings}}"></td>
+                                <td><input type="button" value="📝" onclick="updateRecipe"></td>
+                                <td><input type="button" value="❌" onclick="deleteRecipe"></td>
                             </form>
                         </tr>
                     {{/each}}

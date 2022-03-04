@@ -14,6 +14,9 @@ const Handlebars = require('handlebars');
 // -> Template Composition and Layout
 const wax = require("wax-on");
 
+// -> Connection to Database for CRUD
+var mysql = require('.BDConn.js')
+
 // === Configuration ===s
 
 const cons = require('consolidate'),
@@ -29,13 +32,15 @@ Handlebars.registerPartial(
   "{{person.name}} is {{person.age}} years old.\n"
 )
 
+// Configure MySQL
+app.set('mysql', mysql);
+
 // Configure Express with Consolodate/Handlebars
 app.engine('hbs', cons.handlebars);
 
 // Configure Views Directory
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views');
-
 app.use(express.static('public'))
 
 // === Mock Data ===
@@ -48,6 +53,17 @@ var siteMap = [
   // { name: "Meal Plans",     route: "/mealplans", }
 ];
 
+
+app.use(function(req,res){
+  res.status(404);
+  res.render('404');
+});
+
+app.use(function(err, req, res, next){
+  console.error(err.stack);
+  res.status(500);
+  res.render('500');
+});
 /*
 MOCK DATA FROM STATIC DRAFT
 var persons = [
@@ -95,7 +111,7 @@ app.get('/', (req, res) => {
   res.render('home', {
     title: 'Home',
     sM: siteMap,
-    persons: persons
+    // persons: persons
   });
 })
 
@@ -176,7 +192,7 @@ app.get('/mealplans', (req, res) => {
   res.render('mealplans', {
     title: 'Meal Plans',
     sM: siteMap,
-    persons: persons
+    // persons: persons
   });
 
   // TODO
@@ -193,7 +209,7 @@ app.get('/shopping', (req, res) => {
   res.render('shopping', {
     title: 'Shopping Lists',
     sM: siteMap,
-    persons: persons
+    // persons: persons
   });
 
   // TODO
