@@ -15,7 +15,7 @@ const Handlebars = require('handlebars');
 const wax = require("wax-on");
 
 // -> Connection to Database for CRUD
-var mysql = require('.BDConn.js')
+var mysql = require('./DBConn');
 
 // === Configuration ===s
 
