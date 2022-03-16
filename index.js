@@ -5,6 +5,7 @@
 // http://expressjs.com/
 // -> Routes URLs
 const express = require('express');
+const res = require('express/lib/response');
 
 // https://handlebarsjs.com
 // -> Template Rendering
@@ -18,19 +19,14 @@ const wax = require("wax-on");
 var mysql = require('./DBConn');
 
 // === Configuration ===s
-
 const cons = require('consolidate'),
       app = express(),
       port = 3000;
 
+
 // Configure Wax-On
 wax.on(Handlebars);
 wax.setLayoutPath(__dirname + '/views');
-
-Handlebars.registerPartial(
-  "person", 
-  "{{person.name}} is {{person.age}} years old.\n"
-)
 
 // Configure MySQL
 app.set('mysql', mysql);
@@ -43,7 +39,7 @@ app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views');
 app.use(express.static('public'))
 
-// === Mock Data ===
+// === Mapping ===
 var siteMap = [
   { name: "Home",           route: "/", },
   { name: "Products",       route: "/products", },
@@ -51,41 +47,17 @@ var siteMap = [
   { name: "Recipes",        route: "/recipes", },
   { name: "Shopping Lists", route: "/shopping", },
   // { name: "Meal Plans",     route: "/mealplans", }
+  { name: "404",            route: "/404", },
+  { name: "500",            route: "/500", }
 ];
 
 /*
-// MOCK DATA FROM STATIC DRAFT
-var persons = [
-  { name: "Nils", age: 20 },
-  { name: "Teddy", age: 10 },
-  { name: "Nelson", age: 40 },
-];
-
-var products = [
-  {product_id: "1", product_name: "Chocolate", product_category: "Candy", location_id: "1", stored_quantity: "2", unit: "Bar(s)", purchase_date: "02172020", expiration_date: "05172020"},
-  {product_id: "2", product_name: "Marshmellows", product_category: "Candy", location_id: "1", stored_quantity: "1", unit: "Bag(s)", purchase_date: "02172020", expiration_date: "05172020"},
-  {product_id: "3", product_name: "Graham Crackers", product_category: "Baked Good", location_id: "1", stored_quantity: "1", unit: "Box(s)", purchase_date: "02172020", expiration_date: "05172020"},
-];
-
-var locations = [
-  {location_id: "1", location_name: "Desert Cabinet", category: "Candy, Baked Good", product_id: "1, 2, 3", },
-  {location_id: "2", location_name: "Refrigerator", catergory: "Chilled goods", product_id: "NULL"}
-];
-
-var recipes = [
-  {recipe_id:  "1", recipe_name:  "Smores", total_time:  "10M", active_time:  "10M", },
-];
-
-var shopping = [
-  {purchase_date: "2022-02-11", meal_plan_range: "2022-02-11 to 2022-02-12"},
-];
-*/
-
 // Register Partials with Handlebars
 Handlebars.registerPartial(
   "product", 
   "{{product.name}} is {{product.age}} days old.\n"
 )
+*/
 
 // === Endpoints ===
 
@@ -103,12 +75,17 @@ app.get('/', (req, res) => {
   res.render('home', {
     title: 'Home',
     sM: siteMap,
-    // persons: persons
   });
 })
 
 // === Products ===
-
+// Read
+app.get('/products', (req, res) => {
+  var getProducts = 'SELECT * FROM Products;';
+  mysql.pool.query(getProducts, function(res, mysql, context, complete){
+    res.render('/products', {products: res});
+  })
+})
 // Create 	INSERT/UPDATE  PUT
 app.post('/products/create', (req, res) => {
   var actionString = encodeURIComponent(`
@@ -116,11 +93,13 @@ app.post('/products/create', (req, res) => {
   VALUES (:fproduct_name, :fproduct_category, :fstored_quantity, :funit, :fpurchase_date, :fexpiration_date); `);
   res.redirect('/products/?valid=' + actionString)
 })
+/*
 // Read
 app.post('/products/read', (req, res) => {
   var actionString = encodeURIComponent(`SELECT * FROM Products;`);
   res.redirect('/products/?valid=' + actionString)
 })
+*/
 // Update
 app.post('/products/update', (req, res) => {
   var actionString = encodeURIComponent(`
@@ -298,7 +277,7 @@ app.delete('/shopping', (req, res) => {
 })
 
 app.use((req, res, next) => {
-  res.status(404).render("layout", {title: 'Shopping Lists'})
+  res.status(500).render("layout", {title: '500'})
 })
 
 // Host it!

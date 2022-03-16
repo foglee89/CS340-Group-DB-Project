@@ -32,7 +32,7 @@
                                 <td><input type="text" value="{{product_name}}" id="{{product_name}}"></td>
                                 <select name="product_category"> 
                                     <option disabled selected value>select location</option>
-                                    {{#each}}
+                                    {{#each product_category}}
                                     <option value="{{product_category}}">{{product_category}}</option>
                                     {{/each}}
                                 </select>
@@ -64,7 +64,7 @@
                                 <td><input type="text" value="{{product_name}}" id="{{product_name}}"></td>
                                 <select name="product_category"> 
                                     <option disabled selected value>select location</option>
-                                    {{#each}}
+                                    {{#each product_category}}
                                     <option value="{{product_category}}">{{product_category}}</option>
                                     {{/each}}
                                     <!-- NEED TO VALIDATE THE SELECTED VALUE INTERACTION WITH QUERY FUNCTION AND HANDLEBARS -->
