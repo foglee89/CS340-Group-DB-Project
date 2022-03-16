@@ -78,6 +78,8 @@ app.get('/', (req, res) => {
   });
 })
 
+// testing branch stuff
+
 // === Products ===
 // Read
 app.get('/products', (req, res) => {
