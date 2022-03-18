@@ -21,13 +21,17 @@ let mysql = require('./DBConn');
 // === Configuration ===s
 const cons = require('consolidate'),
       app = express(),
-      port = 3000;
+      port = 2056;
 
 
 // Configure Wax-On
 wax.on(Handlebars);
 wax.setLayoutPath(__dirname + '/views');
 
+Handlebars.registerPartial(
+  "person",
+  "{{person.name}} is {{person.age}} years old.\n"
+)
 // Configure MySQL
 app.set('mysql', mysql);
 
@@ -37,15 +41,11 @@ app.engine('hbs', cons.handlebars);
 // Configure Views Directory
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views');
-app.use(express.static('public'))
-/*
-app.use('/', require('index.js'));
-app.use('/products', require('.products.js'));
-app.use('/locations', require('.locations.js'));
-app.use('/recipes', requrie('.recipes.js'));
-app.use('/shopping', require('.shopping.js'))
-*/
 
+app.use(express.static('public'))
+app.use(express.static('views'))
+
+// === Mock Data ===
 // === Mapping ===
 var siteMap = [
   { name: "Home",           route: "/", },
@@ -59,7 +59,7 @@ var siteMap = [
 /*
 // Register Partials with Handlebars
 Handlebars.registerPartial(
-  "product", 
+  "product",
   "{{product.name}} is {{product.age}} days old.\n"
 )
 */
@@ -85,7 +85,6 @@ app.get('/', (req, res) => {
 })
 
 // === Products ===
-
 // Create 	INSERT/UPDATE  PUT
 app.post('/products/create', (req, res) => {
   var actionString = encodeURIComponent(`
@@ -217,11 +216,14 @@ app.get('/locations', (req, res) => {
   var action = req.query.action;
   console.log(action)
 
-  res.render('locations', {
-    title: 'Locations',
-    sM: siteMap,
-    locations: locations
-  });
+  var getProducts = 'SELECT * FROM Locations;';
+
+  mysql.pool.query(getProducts, function(err, results, fields){
+    // console.log(err)
+    console.log(results[0])
+    // console.log(fields)
+    res.render('locations', {Err: err, Results: results, Fields: fields});
+  })
 
   // TODO
 
@@ -304,6 +306,7 @@ app.get('/shopping', (req, res) => {
 
 
 app.delete('/shopping', (req, res) => {
+
   // ?action=' + actionString
 })
 
