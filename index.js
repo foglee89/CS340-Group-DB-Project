@@ -89,8 +89,12 @@ app.get('/', (req, res) => {
 // Read
 app.get('/products', (req, res) => {
   var getProducts = 'SELECT * FROM Products;';
-  res.render('products', {products: res});
-  mysql.pool.query(getProducts, function(res, mysql, context, complete){
+
+  mysql.pool.query(getProducts, function(err, results, fields){
+    // console.log(err)
+    console.log(results[0])
+    // console.log(fields)
+    res.render('products', {Err: err, Results: results, Fields: fields});
   })
 })
 // Create 	INSERT/UPDATE  PUT
