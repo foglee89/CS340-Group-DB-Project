@@ -28,15 +28,12 @@ const cons = require('consolidate'),
 wax.on(Handlebars);
 wax.setLayoutPath(__dirname + '/views');
 
-<<<<<<< HEAD
 Handlebars.registerPartial(
   "person",
   "{{person.name}} is {{person.age}} years old.\n"
 )
-=======
 // Configure MySQL
 app.set('mysql', mysql);
->>>>>>> 5c1143ba90830621dd51a4b748426bfe499a97e8
 
 // Configure Express with Consolodate/Handlebars
 app.engine('hbs', cons.handlebars);
@@ -44,15 +41,12 @@ app.engine('hbs', cons.handlebars);
 // Configure Views Directory
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views');
-app.use(express.static('public'))
 
-<<<<<<< HEAD
+app.use(express.static('public'))
 app.use(express.static('views'))
 
 // === Mock Data ===
-=======
 // === Mapping ===
->>>>>>> 5c1143ba90830621dd51a4b748426bfe499a97e8
 var siteMap = [
   { name: "Home",           route: "/", },
   { name: "Products",       route: "/products", },
@@ -95,8 +89,8 @@ app.get('/', (req, res) => {
 // Read
 app.get('/products', (req, res) => {
   var getProducts = 'SELECT * FROM Products;';
+  res.render('products', {products: res});
   mysql.pool.query(getProducts, function(res, mysql, context, complete){
-    res.render('/products', {products: res});
   })
 })
 // Create 	INSERT/UPDATE  PUT
@@ -286,11 +280,8 @@ app.get('/shopping', (req, res) => {
 })
 
 app.delete('/shopping', (req, res) => {
-<<<<<<< HEAD
 
-=======
   // ?action=' + actionString
->>>>>>> 5c1143ba90830621dd51a4b748426bfe499a97e8
 })
 
 app.use((req, res, next) => {
