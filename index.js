@@ -155,9 +155,9 @@ app.post('/recipes/delete', (req, res) => {
 })
 
 app.get('/recipes', (req, res) => {
-  var getProducts = 'SELECT * FROM Recipes;';
+  var getRecipes = 'SELECT * FROM Recipes;';
 
-  mysql.pool.query(getProducts, function(err, results, fields){
+  mysql.pool.query(getRecipes, function(err, results, fields){
     // console.log(err)
     console.log(results[0])
     // console.log(fields)
@@ -208,9 +208,9 @@ app.get('/locations', (req, res) => {
   var action = req.query.action;
   console.log(action)
 
-  var getProducts = 'SELECT * FROM Locations;';
+  var getLocations = 'SELECT * FROM Locations;';
 
-  mysql.pool.query(getProducts, function(err, results, fields){
+  mysql.pool.query(getLocations, function(err, results, fields){
 
     res.render('locations', {
       sM: siteMap, 
@@ -273,9 +273,9 @@ app.get('/shopping', (req, res) => {
   var action = req.query.action;
   // console.log(action)
 
-  var getProducts = 'SELECT * FROM ShoppingLists;';
+  var getShopping = 'SELECT * FROM ShoppingLists;';
 
-  mysql.pool.query(getProducts, function(err, results, fields){
+  mysql.pool.query(getShopping, function(err, results, fields){
 
     res.render('shopping', {
       sM: siteMap, 
