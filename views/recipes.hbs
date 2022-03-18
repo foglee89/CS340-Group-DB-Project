@@ -7,6 +7,20 @@
  
     {{#block "content" mode="append"}}
 
+        {{#*inline "search-recipes"}}
+        <h5>
+            Search Products:
+        </h5>
+            <form id="search-recipes" action="" method="">
+                Recipe Name: <input type="text" name="recipe_name" value="">
+                Total Time: <input type="text" name="total_time" value="">
+                Active Time: <input type="text" name="active" value="">
+                <input type="button" value="Search" onclick="searchRecipes()"
+            </form>
+        {{/inline}}
+
+        {{> search-recipes}}
+
         {{#*inline "add-recipe"}}
         <h5>
             Add new Recipe:
