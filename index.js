@@ -51,6 +51,18 @@ var siteMap = [
   // { name: "Meal Plans",     route: "/mealplans", }
 ];
 
+// macro, gets action from req, returns default sql if no action found
+function getAction(req, altRes) {
+
+  if (typeof req.query.action !== 'undefined') {
+    console.log(req.query.action)
+    return req.query.action
+  } else {
+    console.log(altRes)
+    return altRes
+  }
+
+}
 
 // === Endpoints ===
 
@@ -62,8 +74,8 @@ var siteMap = [
 // --- /Notes
 
 app.get('/', (req, res) => {
-  var action = req.query.action;
-  console.log(action)
+
+  getAction(req)
 
   res.render('home', {
     title: 'Home',
@@ -74,12 +86,10 @@ app.get('/', (req, res) => {
 // === Products ===
 // Read
 app.get('/products', (req, res) => {
-  var getProducts = 'SELECT * FROM Products;';
 
-  mysql.pool.query(getProducts, function(err, results, fields){
-    // console.log(err)
-    console.log(results[0])
-    // console.log(fields)
+  action = getAction(req, 'SELECT * FROM Products;')
+
+  mysql.pool.query('SELECT * FROM Products;', function(err, results, fields){
     res.render('products', {
       Err: err, 
       Results: results, 
@@ -94,7 +104,7 @@ app.post('/products/create', (req, res) => {
   var actionString = encodeURIComponent(`
   INSERT INTO Products (product_name, product_category, stored_quantity, unit, purchase_date, expiration_date) 
   VALUES (:fproduct_name, :fproduct_category, :fstored_quantity, :funit, :fpurchase_date, :fexpiration_date); `);
-  res.redirect('/products/?valid=' + actionString)
+  res.redirect('/products/?action=' + actionString)
 })
 // Update
 app.post('/products/update', (req, res) => {
@@ -102,12 +112,12 @@ app.post('/products/update', (req, res) => {
   UPDATE Products
   SET product_name = :fproduct_name, product_category = :fproduct_category, stored_quantity = :fstored_quantity, unit = :funit, purchase_date = :fpurchase_date, expiration_date = :fexpiration_date
   WHERE product_id = :fproduct_id; `);
-  res.redirect('/products/?valid=' + actionString)
+  res.redirect('/products/?action=' + actionString)
 })
 // Delete
 app.post('/products/delete', (req, res) => {
   var actionString = encodeURIComponent(`DELETE FROM Products WHERE product_id = :fproduct_id; `);
-  res.redirect('/products/?valid=' + actionString)
+  res.redirect('/products/?action=' + actionString)
 })
 
 // Read 	  SELECT  GET
@@ -132,12 +142,12 @@ app.post('/recipes/create', (req, res) => {
   var actionString = encodeURIComponent(`
   INSERT INTO Recipes (recipe_name, total_time, active_time)
   VALUES (:frecipe_name, :ftotal_time, :factive_time); `);
-  res.redirect('/recipes/?valid=' + actionString)
+  res.redirect('/recipes/?action=' + actionString)
 })
 // Read
 app.post('/recipes/read', (req, res) => {
   var actionString = encodeURIComponent(`SELECT * FROM Recipes;`);
-  res.redirect('/recipes/?valid=' + actionString)
+  res.redirect('/recipes/?action=' + actionString)
 })
 // Update
 app.post('/recipes/update', (req, res) => {
@@ -145,22 +155,19 @@ app.post('/recipes/update', (req, res) => {
   UPDATE Recipes
   SET recipe_name = :frecipe_name, total_time = :ftotal_time, active_time = :factive_time
   WHERE recipe_id = :frecipe_id; `);
-  res.redirect('/recipes/?valid=' + actionString)
+  res.redirect('/recipes/?action=' + actionString)
 })
 // Delete
 app.post('/recipes/delete', (req, res) => {
   var actionString = encodeURIComponent(`
   DELETE FROM Recipes WHERE recipe_id = :frecipe_id;`);
-  res.redirect('/recipes/?valid=' + actionString)
+  res.redirect('/recipes/?action=' + actionString)
 })
 
 app.get('/recipes', (req, res) => {
   var getProducts = 'SELECT * FROM Recipes;';
 
   mysql.pool.query(getProducts, function(err, results, fields){
-    // console.log(err)
-    console.log(results[0])
-    // console.log(fields)
     res.render('recipes', {
       sM: siteMap, 
       title: 'Recipes',
@@ -181,12 +188,12 @@ app.post('/locations/create', (req, res) => {
   var actionString = encodeURIComponent(`
   INSERT INTO Locations (location_name)
   VALUES  (:flocation_name); `);
-  res.redirect('/locations/?valid=' + actionString)
+  res.redirect('/locations/?action=' + actionString)
 })
 // Read
 app.post('/locations/read', (req, res) => {
   var actionString = encodeURIComponent(`SELECT * FROM Locations; `);
-  res.redirect('/locations/?valid=' + actionString)
+  res.redirect('/locations/?action=' + actionString)
 })
 // Update
 app.post('/locations/update', (req, res) => {
@@ -194,13 +201,13 @@ app.post('/locations/update', (req, res) => {
   UPDATE Locations
   SET location_name = :flocation_name
   WHERE location_id = :flocation_id; `);
-  res.redirect('/locations/?valid=' + actionString)
+  res.redirect('/locations/?action=' + actionString)
 })
 // Delete
 app.post('/locations/delete', (req, res) => {
   var actionString = encodeURIComponent(`
   DELETE FROM Locations WHERE location_id = :flocation_id; `);
-  res.redirect('/locations/?valid=' + actionString)
+  res.redirect('/locations/?action=' + actionString)
 })
 
 // Read 	  SELECT  GET
@@ -247,12 +254,12 @@ app.post('/shopping/create', (req, res) => {
   var actionString = encodeURIComponent(`
   INSERT INTO ShoppingLists (purchase_date, meal_plan_range)
   VALUES (:fpurchase_date, :fmeal_plan_range); `);
-  res.redirect('/shopping/?valid=' + actionString)
+  res.redirect('/shopping/?action=' + actionString)
 })
 // Read
 app.post('/shopping/read', (req, res) => {
   var actionString = encodeURIComponent(`SELECT * FROM ShoppingLists;`);
-  res.redirect('/shopping/?valid=' + actionString)
+  res.redirect('/shopping/?action=' + actionString)
 })
 // Update
 app.post('/shopping/update', (req, res) => {
@@ -260,13 +267,13 @@ app.post('/shopping/update', (req, res) => {
   UPDATE ShoppingLists
   SET meal_plan_range = :fmeal_plan_range
   WHERE purchase_date = :fpurchase_date; `);
-  res.redirect('/shopping/?valid=' + actionString)
+  res.redirect('/shopping/?action=' + actionString)
 })
 // Delete
 app.post('/shopping/delete', (req, res) => {
   var actionString = encodeURIComponent(`
   DELETE FROM ShoppingLists WHERE purchase_date = :fpurchase_date;`);
-  res.redirect('/shopping/?valid=' + actionString)
+  res.redirect('/shopping/?action=' + actionString)
 })
 
 app.get('/shopping', (req, res) => {
