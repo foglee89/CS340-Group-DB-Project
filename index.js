@@ -125,21 +125,6 @@ app.post('/products/delete', (req, res) => {
   res.redirect('/products/?action=' + actionString)
 })
 
-// Read 	  SELECT  GET
-app.get('/products', (req, res) => {
-  var action = req.query.action;
-  console.log(action)
-
-  res.render('products', {
-    title: 'Products',
-    sM: siteMap,
-    products: products
-  });
-
-  // TODO
-
-})
-
 // === Recipes ===
 
 // Create 	INSERT/UPDATE  PUT
@@ -170,19 +155,22 @@ app.post('/recipes/delete', (req, res) => {
 })
 
 app.get('/recipes', (req, res) => {
-  var getRecipes = 'SELECT * FROM Recipes;';
 
-  mysql.pool.query(getRecipes, function(err, results, fields){
-    // console.log(err)
-    console.log(results[0])
-    // console.log(fields)
-    res.render('recipes', {
-      sM: siteMap, 
-      title: 'Recipes',
-      Err: err, 
-      Results: results, 
-      Fields: fields
-    });
+  action = getAction(req, 'SELECT * FROM Recipes;')
+
+  mysql.pool.query(action.action, function(err, results, fields){
+
+    if (action.default == true) {
+      res.render('recipes', {
+        sM: siteMap, 
+        title: 'Recipes',
+        Err: err, 
+        Results: results, 
+        Fields: fields
+      });
+    } else {
+      res.redirect('/recipes')
+    }
   })
 
   // TODO
@@ -220,13 +208,12 @@ app.post('/locations/delete', (req, res) => {
 
 // Read 	  SELECT  GET
 app.get('/locations', (req, res) => {
-  var action = req.query.action;
-  console.log(action)
 
-  var getLocations = 'SELECT * FROM Locations;';
+  action = getAction(req, 'SELECT * FROM Locations;')
 
-  mysql.pool.query(getLocations, function(err, results, fields){
+  mysql.pool.query(action.action, function(err, results, fields){
 
+  if (action.default == true) {
     res.render('locations', {
       sM: siteMap, 
       title: 'Locations',
@@ -234,28 +221,14 @@ app.get('/locations', (req, res) => {
       Results: results, 
       Fields: fields
     });
+  } else {
+    res.redirect('/locations')
+  }
   })
 
   // TODO
 
 })
-
-// === Meal Plans (Unused) ===
-/*
-app.get('/mealplans', (req, res) => {
-  var action = req.query.action;
-  console.log(action)
-
-  res.render('mealplans', {
-    title: 'Meal Plans',
-    sM: siteMap,
-    // persons: persons
-  });
-
-  // TODO
-
-})
-*/
 
 // Create 	INSERT/UPDATE  PUT
 app.post('/shopping/create', (req, res) => {
@@ -285,20 +258,22 @@ app.post('/shopping/delete', (req, res) => {
 })
 
 app.get('/shopping', (req, res) => {
-  var action = req.query.action;
-  // console.log(action)
+  
+  action = getAction(req, 'SELECT * FROM ShoppingLists;')
 
-  var getShopping = 'SELECT * FROM ShoppingLists;';
+  mysql.pool.query(action.action, function(err, results, fields){
 
-  mysql.pool.query(getShopping, function(err, results, fields){
-
-    res.render('shopping', {
-      sM: siteMap, 
-      title: 'Shopping Lists',
-      Err: err, 
-      Results: results, 
-      Fields: fields
-    });
+    if (action.default == true) {
+      res.render('shopping', {
+        sM: siteMap, 
+        title: 'Shopping Lists',
+        Err: err, 
+        Results: results, 
+        Fields: fields
+      });
+    } else {
+      res.redirect('/shopping')
+    }
   })
 
   // TODO
