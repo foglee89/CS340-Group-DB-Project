@@ -167,14 +167,14 @@ app.post('/recipes/delete', (req, res) => {
 })
 
 app.get('/recipes', (req, res) => {
-  var action = req.query.action;
-  console.log(action)
+  var getProducts = 'SELECT * FROM Recipes;';
 
-  res.render('recipes', {
-    title: 'Recipes',
-    sM: siteMap,
-    recipes: recipes
-  });
+  mysql.pool.query(getProducts, function(err, results, fields){
+    // console.log(err)
+    console.log(results[0])
+    // console.log(fields)
+    res.render('recipes', {sM: siteMap, Err: err, Results: results, Fields: fields});
+  })
 
   // TODO
 
@@ -217,10 +217,8 @@ app.get('/locations', (req, res) => {
   var getProducts = 'SELECT * FROM Locations;';
 
   mysql.pool.query(getProducts, function(err, results, fields){
-    // console.log(err)
-    console.log(results[0])
-    // console.log(fields)
-    res.render('locations', {Err: err, Results: results, Fields: fields});
+
+    res.render('locations', {sM: siteMap, Err: err, Results: results, Fields: fields});
   })
 
   // TODO
@@ -271,13 +269,15 @@ app.post('/shopping/delete', (req, res) => {
 })
 
 app.get('/shopping', (req, res) => {
-  var action = req.query.action
-  console.log(action)
-  res.render('shopping', {
-    title: 'Shopping Lists',
-    sM: siteMap,
-    // persons: persons
-  });
+  var action = req.query.action;
+  // console.log(action)
+
+  var getProducts = 'SELECT * FROM ShoppingLists;';
+
+  mysql.pool.query(getProducts, function(err, results, fields){
+
+    res.render('shopping', {sM: siteMap, Err: err, Results: results, Fields: fields});
+  })
 
   // TODO
 
