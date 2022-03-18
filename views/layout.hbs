@@ -25,7 +25,6 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="stylesheet" href="/Skeleton-2.0.4/css/normalize.css">
   <link rel="stylesheet" href="/Skeleton-2.0.4/css/skeleton.css">
-  <link rel="stylesheet" href="css/custom.css">
 
   <style>
   .container {
@@ -49,6 +48,13 @@
   {{#block "scripts"}}
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   {{/block}}
+    <script>
+      function bootstrap() {
+        {{#block "startupScripts"}}
+          
+        {{/block}}
+      }
+    </script>
 
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -56,7 +62,7 @@
 
 </head>
 
-<body>
+<body onload="bootstrap()">
 
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -67,7 +73,7 @@
     <header class="container__header u-full-width">
         {{#block "container__main"}}
             {{#*inline "navButton"}}
-                <a class="button" href=".{{route}}">{{name}}</a>
+                <a class="button" href="{{route}}">{{name}}</a>
             {{/inline}}
 
             {{#each sM}}

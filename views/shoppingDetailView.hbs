@@ -1,4 +1,4 @@
-{{! products.hbs }}
+{{! shoppingDetailView.hbs }}
  
 {{#extends "layout"}}
  
@@ -7,27 +7,28 @@
  
     {{#block "content" mode="append"}}
 
-        {{#*inline "product-table"}}
+        <h3>
+            Shopping List: {{purchase_date}}
+        </h3>
+
+        {{> shoppingView-table}}
+
+        {{#*inline "shoppingData-table"}}
             <table class="u-full-width">
                 <thead>
                     <tr>
                         <!-- <th>product_id</th> -->
                         <th>Product</th>
                         <th>Category</th>
-                        <!-- <th>location_id</th> -->
-                        <th>Location</th>
                         <th>Quantity On Hand</th>
                         <th>Unit</th>
-                        <th>Purchase Date</th>
-                        <th>Expiration Date</th>
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
-                        {{!-- The Create New Overload --}}
-                        <tr>
-                            <form method="POST">
+                    <tr>
+                            <form>
                                 <!-- <td><input type="number" value="{{product_id}}" id="f{{product_id}}"></td> -->
                                 <td><input type="text" value="{{product_name}}" id="{{product_name}}"></td>
                                 <select name="product_category"> 
@@ -37,12 +38,6 @@
                                     {{/each}}
                                 </select>
                                 <!-- <td><input type="number" value="{{location_id}}" id="f{{location_id}}"></td> -->
-                                <select name="location">
-                                    <option disabled selected value>select location</option>
-                                    {{#each location}}
-                                    <option value="{{location_id}}">{{location_name}}</option>
-                                    {{/each}}
-                                </select>
                                 <td><input type="number" value="{{stored_quantity}}" id="{{stored_quantity}}"></td>
                                 <select name="unit">
                                     <option disabled selected value>select unit of measure</option>
@@ -50,17 +45,15 @@
                                     <option value="{{unit}}">{{unit}}</option>
                                     {{/each}}
                                 </select>
-                                <td><input type="date" value="{{purchase_date}}" id="{{purchase_date}}"></td>
-                                <td><input type="date" value="{{expiration_date}}" id="{{expiration_date}}"></td>
-                                <td><input type="submit" value="📝" onclick=""></td>
-                                <td><input type="submit" value="❌" onclick=""></td>
+                                <td><input type="button" value="📝" onclick=""></td>
+                                <td><input type="button" value="❌" onclick=""></td>
                             </form>
                         </tr>
-                        {{!-- Per entry goodness --}}
+                    <!-- FUTURE IMPLEMENTATION, SORT BY CATEGORY AND SEPARATE BY CATEGORY NAME -->
                     {{#each products}}
                         <tr>
-                            <form method="POST">
-                                <!-- <td><input type="number" value="{{product_id}}" id="f{{product_id}}"></td> -->
+                            <form>
+                                <!-- <td>{{product_id}}</td> -->
                                 <td><input type="text" value="{{product_name}}" id="{{product_name}}"></td>
                                 <select name="product_category"> 
                                     <option disabled selected value>select location</option>
@@ -70,15 +63,9 @@
                                     <!-- NEED TO VALIDATE THE SELECTED VALUE INTERACTION WITH QUERY FUNCTION AND HANDLEBARS -->
                                     <option value="{{product_category}} "selected="selected">{{product_category}}</option>
                                 </select>
-                                <!-- <td><input type="number" value="{{location_id}}" id="f{{location_id}}"></td> -->
-                                <select name="location">
-                                    <option disabled selected value> select location </option>
-                                    {{#each location}}
-                                    <option value="{{location_id}}">{{location_name}}</option>
-                                    {{/each}}
-                                    <!-- NEED TO VALIDATE THE SELECTED VALUE INTERACTION WITH QUERY FUNCTION AND HANDLEBARS -->
-                                    <option value="{{location_id}} "selected="selected">{{location_name}}</option>
-                                </select>
+                                <!-- ARBITRARILY SET AS STORED QUANTITY TO HAVE DATA. 
+                                     NEEDS CUST UI FUNC TO GEN DATA. MIGHT NEED SOME 
+                                     OTHER METHOD FOR COURSE-->
                                 <td><input type="number" value="{{stored_quantity}}" id="{{stored_quantity}}"></td>
                                 <select name="unit">
                                     {{#each unit}}
@@ -87,10 +74,8 @@
                                     <!-- NEED TO VALIDATE THE SELECTED VALUE INTERACTION WITH QUERY FUNCTION AND HANDLEBARS -->
                                     <option value="{{unit}}" selected="selected">{{unit}}</option>
                                 </select>
-                                <td><input type="date" value="{{purchase_date}}" id="{{purchase_date}}"></td>
-                                <td><input type="date" value="{{expiration_date}}" id="{{expiration_date}}"></td>
-                                <td><input type="submit" value="📝" onclick="updateProduct"></td>
-                                <td><input type="submit" value="❌" onclick="deleteProduct"></td>
+                                <td><input type="button" value="📝" onclick="updateListProduct"></td>
+                                <td><input type="button" value="❌" onclick="deleteListProduct"></td>
                             </form>
                         </tr>
                     {{/each}}
@@ -98,9 +83,9 @@
             </table>
         {{/inline}}
 
-        {{> product-table}}
+        {{> shoppingData-table}}
 
-                <!-- The above form looks like this -->
+
         <!-- Always wrap checkbox and radio inputs in a label and use a <span class="label-body"> inside of it -->
 
         <!-- Note: The class .u-full-width is just a utility class shorthand for width: 100% -->

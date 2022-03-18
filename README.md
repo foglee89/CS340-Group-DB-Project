@@ -57,7 +57,7 @@ Course-level requirements version
    - [x] Ed Discussion post
  - [x] Project Step 3 Final Version: Design HTML Interface
    * Due: Feb. 20, 2022 
- - [ ] Project Step 4 Draft Version: DML and DDL Queries
+ - [x] Project Step 4 Draft Version: DML and DDL Queries
    * Due: Feb. 24, 2022
  - [ ] Project Step 5 Draft Version: Implement CREATE + READ operations
    * Due: Mar. 3, 2022

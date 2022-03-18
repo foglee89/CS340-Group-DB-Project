@@ -11,36 +11,36 @@
             <table class="u-full-width">
                 <thead>
                     <tr>
-                        <th>location_id</th>
-                        <th>location_name</th>
-                        <th>category</th>
-                        <th>product_id</th>
-                        <th>edit</th>
-                        <th>delete</th>
+                        <!-- <th>location_id</th> -->
+                        <th>Location Name</th>
+                        <!-- <th>Category</th> -->
+                        <!-- <th>Product_id</th> -->
+                        <th>Edit</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
                         <tr>
-                            <form>
-                                <td><input type="number" value="" id=""></td>
-                                <td><input type="text" value="" id=""></td>
-                                <td><input type="" value="" id=""></td>
-                                <td><input type="number" value="" id=""></td>
-                                <td><input type="button" value="📝" id=""></td>
-                                <td><input type="button" value="❌" id=""></td>
+                            <form method="POST">
+                                <!-- <td><input type="number" value="" id=""></td> -->
+                                <td><input type="text" value="{{location_name}}" id="{{location_name}}"></td>
+                                <!-- <td><input type="text" value="{{category}}" id="{{category}}"></td> -->
+                                <!-- <td><input type="number" value="" id=""></td> -->
+                                <td><input type="submit" value="📝" onclick=""></td>
+                                <td><input type="submit" value="❌" onclick=""></td>
                             </form>
                         </tr>
                     {{#each locations}}
                         <tr>
-                            <form>
-                                <label for="f{{location_id}}">
+                            <form method="POST">
+                                <!-- <label for="f{{location_id}}">
                                     <td><input type="number" value="{{location_id}}" id="f{{location_id}}"></td>
-                                </label>
+                                </label> -->
                                 <td><input type="text" value="{{location_name}}" id="{{location_name}}"></td>
-                                <td><input type="" value="{{category}}" id="{{category}}"></td>
-                                <td><input type="number" value="{{product_id}}" id="{{product_id}}"></td>
-                                <td><input type="button" value="📝" id=""></td>
-                                <td><input type="button" value="❌" id=""></td>
+                                <!-- <td><input type="" value="{{category}}" id="{{category}}"></td> -->
+                                <!-- <td><input type="number" value="{{product_id}}" id="{{product_id}}"></td> -->
+                                <td><input type="submit" value="📝" onclick="updateLocation"></td>
+                                <td><input type="submit" value="❌" onclick="deleteLocation"></td>
                             </form>
                         </tr>
                     {{/each}}

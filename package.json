@@ -21,6 +21,7 @@
     "express": "^4.17.2",
     "forever": "^4.0.3",
     "handlebars": "^4.7.7",
+    "mysql": "^2.18.1",
     "nodemon": "^2.0.15",
     "underscore": "^1.13.2",
     "wax-on": "^1.2.2"

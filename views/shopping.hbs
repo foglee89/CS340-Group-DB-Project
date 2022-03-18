@@ -11,28 +11,28 @@
             <table class="u-full-width">
                 <thead>
                     <tr>
-                        <th>purchase_date</th>
-                        <th>meal_plan_range</th>
-                        <th>edit</th>
-                        <th>delete</th>
+                        <th>Purchase Date</th>
+                        <th>Meal Plan Range</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
                         <tr>
-                            <form>
-                                <td><input type="date" value="{{purchase_date}}" id="f{{purchase_date}}"></td>
+                            <form method="POST">
+                                <td><input type="date" value="{{purchase_date}}" id="{{purchase_date}}"></td>
                                 <td><input type="number" value="{{meal_plan_range}}" id="{{meal_plan_range}}"></td>
-                                <td><input type="button" value="📝" id=""></td>
-                                <td><input type="button" value="❌" id=""></td>
+                                <td><input type="submit" value="📝" id=""></td>
+                                <td><input type="submit" value="❌" id="" formaction="/shopping/delete"></td>
                             </form>
                         </tr>
                     {{#each shopping}}
                         <tr>
-                            <form>
-                                <td><input type="date" value="{{purchase_date}}" id="f{{purchase_date}}"></td>
+                            <form method="POST">
+                                <td><input type="date" value="{{purchase_date}}" id="{{purchase_date}}"></td>
                                 <td><input type="number" value="{{meal_plan_range}}" id="{{meal_plan_range}}"></td>
-                                <td><input type="button" value="📝" id=""></td>
-                                <td><input type="button" value="❌" id=""></td>
+                                <td><input type="submit" value="📝" onclick="updateShoppingList"></td>
+                                <td><input type="submit" value="❌" id="" formaction="/shopping/delete"></td>
                             </form>
                         </tr>
                     {{/each}}
