@@ -1,1 +1,14 @@
-<h1>Error 404 - The Page Doesn't Exist You Fool</h1>
+{{! 404.hbs }}
+ 
+{{#extends "layout"}}
+ 
+    {{#block "scripts"}}
+    {{/block}}
+ 
+    {{#block "content"}}
+        <h1>
+            Error 404 - The Page Doesn't Exist You Fool
+        </h1>
+    {{/block}}
+ 
+{{/extends}}

@@ -38,7 +38,7 @@ CREATE TABLE Products (
     purchase_date DATE NOT NULL,
     expiration_date DATE NOT NULL,
     PRIMARY KEY (product_id),
-    FOREIGN KEY (location_id) REFERENCES Locations(location_id) ON DELETE CASCADE
+    FOREIGN KEY (location_id) REFERENCES Locations(location_id)
 ) ENGINE=InnoDB;
 
 --

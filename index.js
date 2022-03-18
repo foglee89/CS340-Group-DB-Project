@@ -16,7 +16,7 @@ const Handlebars = require('handlebars');
 const wax = require("wax-on");
 
 // -> Connection to Database for CRUD
-var mysql = require('./DBConn');
+let mysql = require('./DBConn');
 
 // === Configuration ===s
 const cons = require('consolidate'),
@@ -38,6 +38,13 @@ app.engine('hbs', cons.handlebars);
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views');
 app.use(express.static('public'))
+/*
+app.use('/', require('index.js'));
+app.use('/products', require('.products.js'));
+app.use('/locations', require('.locations.js'));
+app.use('/recipes', requrie('.recipes.js'));
+app.use('/shopping', require('.shopping.js'))
+*/
 
 // === Mapping ===
 var siteMap = [
@@ -47,8 +54,6 @@ var siteMap = [
   { name: "Recipes",        route: "/recipes", },
   { name: "Shopping Lists", route: "/shopping", },
   // { name: "Meal Plans",     route: "/mealplans", }
-  { name: "404",            route: "/404", },
-  { name: "500",            route: "/500", }
 ];
 
 /*
@@ -68,6 +73,7 @@ Handlebars.registerPartial(
 
 // --- /Notes
 
+// === Home Page ===
 app.get('/', (req, res) => {
   var action = req.query.action;
   console.log(action)
@@ -78,16 +84,8 @@ app.get('/', (req, res) => {
   });
 })
 
-// testing branch stuff
-
 // === Products ===
-// Read
-app.get('/products', (req, res) => {
-  var getProducts = 'SELECT * FROM Products;';
-  mysql.pool.query(getProducts, function(res, mysql, context, complete){
-    res.render('/products', {products: res});
-  })
-})
+
 // Create 	INSERT/UPDATE  PUT
 app.post('/products/create', (req, res) => {
   var actionString = encodeURIComponent(`
@@ -95,13 +93,13 @@ app.post('/products/create', (req, res) => {
   VALUES (:fproduct_name, :fproduct_category, :fstored_quantity, :funit, :fpurchase_date, :fexpiration_date); `);
   res.redirect('/products/?valid=' + actionString)
 })
-/*
+
 // Read
 app.post('/products/read', (req, res) => {
   var actionString = encodeURIComponent(`SELECT * FROM Products;`);
   res.redirect('/products/?valid=' + actionString)
 })
-*/
+
 // Update
 app.post('/products/update', (req, res) => {
   var actionString = encodeURIComponent(`
@@ -234,6 +232,8 @@ app.get('/mealplans', (req, res) => {
 
 })
 
+// === Shopping Lists ===
+
 // Create 	INSERT/UPDATE  PUT
 app.post('/shopping/create', (req, res) => {
   var actionString = encodeURIComponent(`
@@ -278,9 +278,19 @@ app.delete('/shopping', (req, res) => {
   // ?action=' + actionString
 })
 
-app.use((req, res, next) => {
-  res.status(500).render("layout", {title: '500'})
-})
+
+// 404 Not Found
+app.use((req,res) => {
+  res.status(404);
+  res.render('404');
+});
+
+//500 Server Error
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500);
+  res.render('500');
+});
 
 // Host it!
 app.listen(port, () => {
