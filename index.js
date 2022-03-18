@@ -95,9 +95,21 @@ app.post('/products/create', (req, res) => {
 })
 
 // Read
-app.post('/products/read', (req, res) => {
-  var actionString = encodeURIComponent(`SELECT * FROM Products;`);
-  res.redirect('/products/?valid=' + actionString)
+app.get('/products', (req, res) => {
+  var getProducts = 'SELECT * FROM Products;';
+
+  mysql.pool.query(getProducts, function(err, results, fields){
+    // console.log(err)
+    console.log(results[0])
+    // console.log(fields)
+    res.render('products', {
+      Err: err, 
+      Results: results, 
+      Fields: fields, 
+      title: 'Products',
+      sM: siteMap,
+    });
+  })
 })
 
 // Update
@@ -122,7 +134,6 @@ app.get('/products', (req, res) => {
   res.render('products', {
     title: 'Products',
     sM: siteMap,
-    products: products
   });
 
   // TODO
@@ -242,10 +253,27 @@ app.post('/shopping/create', (req, res) => {
   res.redirect('/shopping/?valid=' + actionString)
 })
 // Read
+
+/*
+app.post('/shopping', (req, res, next) => {
+  var selectShopping = encodeURIComponent(`SELECT * FROM ShoppingLists;`);
+  try(mysql.pool.query(selectShopping, (err, results, fields) => {
+    if (err) {
+        res.write(JSON.stringify(error));
+        res.end();
+    } else {
+        shopping = results;
+        try()
+        res.render('/shopping', shopping);
+    }
+  });
+*/
+
 app.post('/shopping/read', (req, res) => {
   var actionString = encodeURIComponent(`SELECT * FROM ShoppingLists;`);
   res.redirect('/shopping/?valid=' + actionString)
 })
+
 // Update
 app.post('/shopping/update', (req, res) => {
   var actionString = encodeURIComponent(`
@@ -274,6 +302,7 @@ app.get('/shopping', (req, res) => {
 
 })
 
+
 app.delete('/shopping', (req, res) => {
   // ?action=' + actionString
 })
@@ -282,14 +311,14 @@ app.delete('/shopping', (req, res) => {
 // 404 Not Found
 app.use((req,res) => {
   res.status(404);
-  res.render('404');
+  res.render('404', {sM: siteMap,});
 });
 
 //500 Server Error
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500);
-  res.render('500');
+  res.render('500', {sM: siteMap,});
 });
 
 // Host it!

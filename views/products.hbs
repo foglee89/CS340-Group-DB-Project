@@ -2,7 +2,16 @@
  
 {{#extends "layout"}}
  
-    {{#block "scripts"}}
+    {{#block "startupScripts"}}
+    
+        m1 = {{err}}
+        m2 = {{results}}
+        m3 = {{fields}}
+
+        console.log(m1)
+        console.log(m2)
+        console.log(m3)
+
     {{/block}}
  
     {{#block "content" mode="append"}}
@@ -104,7 +113,7 @@
                     </tr>
                 </thead>
                     {{!-- Per entry goodness --}}
-                    {{#each product}}
+                    {{#each results}}
                         <tr>
                             <form method="POST">
                                 <!-- <td><input type="number" value="{{product_id}}" id="f{{product_id}}"></td> -->
