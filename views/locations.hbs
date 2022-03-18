@@ -6,9 +6,43 @@
     {{/block}}
  
     {{#block "content" mode="append"}}
+        <br>
+        {{#*inline "location-add"}}
+            <table>
+                <h5>
+                    Add a new location:
+                </h5>
+                <thead>
+                    <tr>
+                        <!-- <th>location_id</th> -->
+                        <th>Location Name</th>
+                        <!-- <th>Category</th> -->
+                        <!-- <th>Product_id</th> -->
+                        <th>Add</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr>
+                            <form method="POST">
+                                <!-- <td><input type="number" value="" id=""></td> -->
+                                <td><input type="text" id="{{location_name}}"></td>
+                                <!-- <td><input type="text" value="{{category}}" id="{{category}}"></td> -->
+                                <!-- <td><input type="number" value="" id=""></td> -->
+                                <td><input type="submit" value="✅" onclick=""></td>
+                            </form>
+                        </tr>
+                </tbody>
+            </table>
+        {{/inline}}
 
+        {{> location-add}}
+
+        <br>
         {{#*inline "location-table"}}
             <table class="u-full-width">
+                <h5>
+                    Current locations:
+                </h5>
                 <thead>
                     <tr>
                         <!-- <th>location_id</th> -->

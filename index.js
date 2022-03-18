@@ -28,10 +28,6 @@ const cons = require('consolidate'),
 wax.on(Handlebars);
 wax.setLayoutPath(__dirname + '/views');
 
-Handlebars.registerPartial(
-  "person",
-  "{{person.name}} is {{person.age}} years old.\n"
-)
 // Configure MySQL
 app.set('mysql', mysql);
 
@@ -45,7 +41,6 @@ app.set('views', __dirname + '/views');
 app.use(express.static('public'))
 app.use(express.static('views'))
 
-// === Mock Data ===
 // === Mapping ===
 var siteMap = [
   { name: "Home",           route: "/", },
@@ -56,13 +51,6 @@ var siteMap = [
   // { name: "Meal Plans",     route: "/mealplans", }
 ];
 
-/*
-// Register Partials with Handlebars
-Handlebars.registerPartial(
-  "product",
-  "{{product.name}} is {{product.age}} days old.\n"
-)
-*/
 
 // === Endpoints ===
 
@@ -173,7 +161,13 @@ app.get('/recipes', (req, res) => {
     // console.log(err)
     console.log(results[0])
     // console.log(fields)
-    res.render('recipes', {sM: siteMap, Err: err, Results: results, Fields: fields});
+    res.render('recipes', {
+      sM: siteMap, 
+      title: 'Recipes',
+      Err: err, 
+      Results: results, 
+      Fields: fields
+    });
   })
 
   // TODO
@@ -218,7 +212,13 @@ app.get('/locations', (req, res) => {
 
   mysql.pool.query(getProducts, function(err, results, fields){
 
-    res.render('locations', {sM: siteMap, Err: err, Results: results, Fields: fields});
+    res.render('locations', {
+      sM: siteMap, 
+      title: 'Locations',
+      Err: err, 
+      Results: results, 
+      Fields: fields
+    });
   })
 
   // TODO
@@ -226,7 +226,7 @@ app.get('/locations', (req, res) => {
 })
 
 // === Meal Plans (Unused) ===
-
+/*
 app.get('/mealplans', (req, res) => {
   var action = req.query.action;
   console.log(action)
@@ -240,6 +240,7 @@ app.get('/mealplans', (req, res) => {
   // TODO
 
 })
+*/
 
 // Create 	INSERT/UPDATE  PUT
 app.post('/shopping/create', (req, res) => {
@@ -276,7 +277,13 @@ app.get('/shopping', (req, res) => {
 
   mysql.pool.query(getProducts, function(err, results, fields){
 
-    res.render('shopping', {sM: siteMap, Err: err, Results: results, Fields: fields});
+    res.render('shopping', {
+      sM: siteMap, 
+      title: 'Shopping Lists',
+      Err: err, 
+      Results: results, 
+      Fields: fields
+    });
   })
 
   // TODO
@@ -288,9 +295,18 @@ app.delete('/shopping', (req, res) => {
   // ?action=' + actionString
 })
 
-app.use((req, res, next) => {
-  res.status(500).render("layout", {title: '500'})
-})
+// 404 Not Found
+app.use((req,res) => {
+  res.status(404);
+  res.render('404', {sM: siteMap,});
+});
+
+//500 Server Error
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500);
+  res.render('500', {sM: siteMap,});
+});
 
 // Host it!
 app.listen(port, () => {
