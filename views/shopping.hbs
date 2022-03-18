@@ -7,7 +7,35 @@
  
     {{#block "content" mode="append"}}
 
+        {{#*inline "shopping-add"}}
+        <h5>
+            Add new Shopping List:
+        </h5>
+            <table class="u-full-width">
+                <thead>
+                    <tr>
+                        <th>Purchase Date</th>
+                        <th>Meal Plan Range</th>
+                        <th>Add</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr>
+                            <form method="POST">
+                                <td><input type="date" value="{{purchase_date}}" id="{{purchase_date}}"></td>
+                                <td><input type="date" value="{{meal_plan_range}}" id="{{meal_plan_range}}"></td>
+                                <td><input type="submit" value="✅" id="" formaction=""></td>
+                            </form>
+                        </tr>
+                </tbody>
+            </table>
+        {{/inline}}
+        {{> shopping-add}}
+
         {{#*inline "shopping-table"}}
+        <h5>
+            Current Shopping Lists:
+        </h5>
             <table class="u-full-width">
                 <thead>
                     <tr>
@@ -18,21 +46,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                        <tr>
-                            <form method="POST">
-                                <td><input type="date" value="{{purchase_date}}" id="{{purchase_date}}"></td>
-                                <td><input type="number" value="{{meal_plan_range}}" id="{{meal_plan_range}}"></td>
-                                <td><input type="submit" value="📝" id=""></td>
-                                <td><input type="submit" value="❌" id="" formaction="/shopping/delete"></td>
-                            </form>
-                        </tr>
+
                     {{#each Results}}
                         <tr>
                             <form method="POST">
                                 <td><input type="date" value="{{purchase_date}}" id="{{purchase_date}}"></td>
-                                <td><input type="number" value="{{meal_plan_range}}" id="{{meal_plan_range}}"></td>
-                                <td><input type="submit" value="📝" onclick="updateShoppingList"></td>
-                                <td><input type="submit" value="❌" id="" formaction="/shopping/delete"></td>
+                                <td><input type="date" value="{{meal_plan_range}}" id="{{meal_plan_range}}"></td>
+                                <td><input type="submit" value="📝" onclick="updateShoppingList({{purchase_date}})"></td>
+                                <td><input type="submit" value="❌" id="" formaction="/shopping/delete({{purchase_date}})"></td>
                             </form>
                         </tr>
                     {{/each}}

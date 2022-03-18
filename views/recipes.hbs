@@ -7,7 +7,10 @@
  
     {{#block "content" mode="append"}}
 
-        {{#*inline "recipes-table"}}
+        {{#*inline "add-recipe"}}
+        <h5>
+            Add new Recipe:
+        </h5>
             <table class="u-full-width">
                 <thead>
                     <tr>
@@ -24,14 +27,38 @@
                         <tr>
                             <form method="POST">
                                 <!-- <td><input type="number" value="" id=""></td> -->
-                                <td><input type="text" value="{{recipe_name}}" id="{{recipe_name}}"></td>
-                                <td><input type="duration" value="{{total_time}}" id="{{total_time}}"></td>
-                                <td><input type="duration" value="{{active_time}}" id="{{active_time}}"></td>
-                                <td><input type="number" value="{{servings}}" id="{{servings}}"></td>
-                                <td><input type="submit" value="📝" onclick=""></td>
-                                <td><input type="submit" value="❌" onclick=""></td>
+                                <td><input type="text" id="{{recipe_name}}"></td>
+                                <td><input type="duration" id="{{total_time}}"></td>
+                                <td><input type="duration" id="{{active_time}}"></td>
+                                <td><input type="number" id="{{servings}}"></td>
+                                <td><input type="submit" value="✅" onclick=""></td>
                             </form>
                         </tr>
+                </tbody>
+            </table>
+        {{/inline}}
+
+        {{> add-recipe}}
+
+
+        {{#*inline "recipes-table"}}
+        <h5>
+            Current Recipes:
+        </h5>
+            <table class="u-full-width">
+                <thead>
+                    <tr>
+                        <!-- <th>recipe_id</th> -->
+                        <th>Recipe</th>
+                        <th>Total Time</th>
+                        <th>Active Time</th>
+                        <th>Servings</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                       
                     {{#each Results}}
                         <tr>
                             <form method="POST">
@@ -40,8 +67,8 @@
                                 <td><input type="duration" value="{{total_time}}" id="{{total_time}}"></td>
                                 <td><input type="duration" value="{{active_time}}" id="{{active_time}}"></td>
                                 <td><input type="number" value="{{servings}}" id="{{servings}}"></td>
-                                <td><input type="submit" value="📝" onclick="updateRecipe"></td>
-                                <td><input type="submit" value="❌" onclick="deleteRecipe"></td>
+                                <td><input type="submit" value="📝" onclick="updateRecipe({{recipe_id}})"></td>
+                                <td><input type="submit" value="❌" onclick="deleteRecipe({{recipe_id}})"></td>
                             </form>
                         </tr>
                     {{/each}}

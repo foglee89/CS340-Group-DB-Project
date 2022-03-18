@@ -10,7 +10,7 @@
         {{#*inline "location-add"}}
             <table>
                 <h5>
-                    Add a new location:
+                    Add new Location:
                 </h5>
                 <thead>
                     <tr>
@@ -41,7 +41,7 @@
         {{#*inline "location-table"}}
             <table class="u-full-width">
                 <h5>
-                    Current locations:
+                    Current Locations:
                 </h5>
                 <thead>
                     <tr>
@@ -63,8 +63,8 @@
                                 <td><input type="text" value="{{location_name}}" id="{{location_name}}"></td>
                                 <!-- <td><input type="" value="{{category}}" id="{{category}}"></td> -->
                                 <!-- <td><input type="number" value="{{product_id}}" id="{{product_id}}"></td> -->
-                                <td><input type="submit" value="📝" onclick="updateLocation"></td>
-                                <td><input type="submit" value="❌" onclick="deleteLocation"></td>
+                                <td><input type="submit" value="📝" onclick="updateLocation({{location_id}})"></td>
+                                <td><input type="submit" value="❌" onclick="deleteLocation({{location_id}})"></td>
                             </form>
                         </tr>
                     {{/each}}
