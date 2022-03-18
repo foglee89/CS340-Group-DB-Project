@@ -217,11 +217,14 @@ app.get('/locations', (req, res) => {
   var action = req.query.action;
   console.log(action)
 
-  res.render('locations', {
-    title: 'Locations',
-    sM: siteMap,
-    locations: locations
-  });
+  var getProducts = 'SELECT * FROM Locations;';
+
+  mysql.pool.query(getProducts, function(err, results, fields){
+    // console.log(err)
+    console.log(results[0])
+    // console.log(fields)
+    res.render('locations', {Err: err, Results: results, Fields: fields});
+  })
 
   // TODO
 
