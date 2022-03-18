@@ -15,7 +15,7 @@
     {{/block}}
  
     {{#block "content" mode="append"}}
-
+        <!--Search by location and name not implemented yet -->
         {{#*inline "search-products"}}
         <h5>
             Search Products:
@@ -34,7 +34,7 @@
                     <option value="{{location_id}}">{{location_name}}</option>
                     {{/each}}
                 </select>
-                <input type="button" value="Search" onclick="searchProducts()"
+                <input type="button" value="Search" onclick="searchProducts()">
             </form>
         {{/inline}}
 
