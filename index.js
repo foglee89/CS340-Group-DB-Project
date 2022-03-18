@@ -56,10 +56,10 @@ function getAction(req, altRes) {
 
   if (typeof req.query.action !== 'undefined') {
     console.log(req.query.action)
-    return req.query.action
+    return {action: req.query.action, default: false}
   } else {
     console.log(altRes)
-    return altRes
+    return {action: altRes, default: true}
   }
 
 }
@@ -89,14 +89,19 @@ app.get('/products', (req, res) => {
 
   action = getAction(req, 'SELECT * FROM Products;')
 
-  mysql.pool.query('SELECT * FROM Products;', function(err, results, fields){
-    res.render('products', {
-      Err: err, 
-      Results: results, 
-      Fields: fields,
-      title: 'Products',
-      sM: siteMap,
-    });
+  mysql.pool.query(action.action, function(err, results, fields){
+
+    if (action.default == true) {
+      res.render('products', {
+        Err: err, 
+        Results: results, 
+        Fields: fields,
+        title: 'Products',
+        sM: siteMap,
+      });
+    } else {
+      res.redirect('/products')
+    }
   })
 })
 // Create 	INSERT/UPDATE  PUT
