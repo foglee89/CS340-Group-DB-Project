@@ -95,7 +95,7 @@ app.get('/products', (req, res) => {
     res.render('products', {
       Err: err, 
       Results: results, 
-      Fields: fields
+      Fields: fields,
       title: 'Products',
       sM: siteMap,
     });
