@@ -1,1 +1,14 @@
-<h1>Error 500 - Well This Is Embarrasing, Something Is Very Wrong Here</h1>
+{{! 500.hbs }}
+ 
+{{#extends "layout"}}
+ 
+    {{#block "scripts"}}
+    {{/block}}
+ 
+    {{#block "content"}}
+        <h1>
+            Error 500 - Well This Is Embarrasing, Something Is Very Wrong Here
+        </h1>
+    {{/block}}
+ 
+{{/extends}}

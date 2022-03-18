@@ -54,8 +54,6 @@ var siteMap = [
   { name: "Recipes",        route: "/recipes", },
   { name: "Shopping Lists", route: "/shopping", },
   // { name: "Meal Plans",     route: "/mealplans", }
-  { name: "404",            route: "/404", },
-  { name: "500",            route: "/500", }
 ];
 
 /*
@@ -94,7 +92,13 @@ app.get('/products', (req, res) => {
     // console.log(err)
     console.log(results[0])
     // console.log(fields)
-    res.render('products', {Err: err, Results: results, Fields: fields});
+    res.render('products', {
+      Err: err, 
+      Results: results, 
+      Fields: fields
+      title: 'Products',
+      sM: siteMap,
+    });
   })
 })
 // Create 	INSERT/UPDATE  PUT
@@ -104,13 +108,6 @@ app.post('/products/create', (req, res) => {
   VALUES (:fproduct_name, :fproduct_category, :fstored_quantity, :funit, :fpurchase_date, :fexpiration_date); `);
   res.redirect('/products/?valid=' + actionString)
 })
-/*
-// Read
-app.post('/products/read', (req, res) => {
-  var actionString = encodeURIComponent(`SELECT * FROM Products;`);
-  res.redirect('/products/?valid=' + actionString)
-})
-*/
 // Update
 app.post('/products/update', (req, res) => {
   var actionString = encodeURIComponent(`
