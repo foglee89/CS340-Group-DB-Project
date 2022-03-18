@@ -22,19 +22,18 @@
         </h5>
             <form id="search-products" action="" method="">
                 Product Name: <input type="text" name="product_name" value="">
-                <!-- Implement additional search capability as time permits 
                 Product Category: <select name="product_category" value="">
                     <option disabled selected value>select category</option>
                     {{#each product_category}}
                     <option value="{{product_category}}">{{product_category}}</option>
                     {{/each}}
-                </select><br>
+                </select>
                 Product Location: <select name="location" value="">
                     <option disabled selected value>select location</option>
                     {{#each location}}
                     <option value="{{location_id}}">{{location_name}}</option>
                     {{/each}}
-                </select><br> -->
+                </select>
                 <input type="button" value="Search" onclick="searchProducts()"
             </form>
         {{/inline}}

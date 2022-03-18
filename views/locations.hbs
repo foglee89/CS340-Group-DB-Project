@@ -6,7 +6,19 @@
     {{/block}}
  
     {{#block "content" mode="append"}}
-        <br>
+
+        {{#*inline "search-locations"}}
+        <h5>
+            Search Locations:
+        </h5>
+            <form id="search-locations" action="" method="">
+                Location Name: <input type="text" name="location_name" value="">
+                <input type="button" value="Search" onclick="searchLocations()"
+            </form>
+        {{/inline}}
+
+        {{> search-locations}}
+
         {{#*inline "location-add"}}
             <table>
                 <h5>
