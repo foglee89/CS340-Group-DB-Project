@@ -106,23 +106,26 @@ app.get('/products', (req, res) => {
 })
 // Create 	INSERT/UPDATE  PUT
 app.post('/products/create', (req, res) => {
-  var actionString = encodeURIComponent(`
+  var actionString = `
   INSERT INTO Products (product_name, product_category, stored_quantity, unit, purchase_date, expiration_date) 
-  VALUES (:fproduct_name, :fproduct_category, :fstored_quantity, :funit, :fpurchase_date, :fexpiration_date); `);
-  res.redirect('/products/?action=' + actionString)
+  VALUES (${req.params(product_name)}, ${req.params(product_category)}, ${req.params(stored_quantity)}, ${req.params(unit)}, ${req.params(purchase_date)}, ${req.params(expiration_date)}); `;
+
+  encodeURIComponent
+
+  res.redirect(307, '/products/?action=' + actionString)
 })
 // Update
 app.post('/products/update', (req, res) => {
   var actionString = encodeURIComponent(`
   UPDATE Products
-  SET product_name = :fproduct_name, product_category = :fproduct_category, stored_quantity = :fstored_quantity, unit = :funit, purchase_date = :fpurchase_date, expiration_date = :fexpiration_date
-  WHERE product_id = :fproduct_id; `);
-  res.redirect('/products/?action=' + actionString)
+  SET product_name = ${product_name}, product_category = ${product_category}, stored_quantity = ${stored_quantity}, unit = ${unit}, purchase_date = ${purchase_date}, expiration_date = ${expiration_date}
+  WHERE product_id = ${product_id}; `);
+  res.redirect(307, '/products/?action=' + actionString)
 })
 // Delete
 app.post('/products/delete', (req, res) => {
-  var actionString = encodeURIComponent(`DELETE FROM Products WHERE product_id = :fproduct_id; `);
-  res.redirect('/products/?action=' + actionString)
+  var actionString = encodeURIComponent(`DELETE FROM Products WHERE product_id = ${product_id}; `);
+  res.redirect(307, '/products/?action=' + actionString)
 })
 
 // === Recipes ===
@@ -131,7 +134,7 @@ app.post('/products/delete', (req, res) => {
 app.post('/recipes/create', (req, res) => {
   var actionString = encodeURIComponent(`
   INSERT INTO Recipes (recipe_name, total_time, active_time)
-  VALUES (:frecipe_name, :ftotal_time, :factive_time); `);
+  VALUES (${recipe_name}, ${total_time}, ${active_time}); `);
   res.redirect('/recipes/?action=' + actionString)
 })
 // Read
@@ -143,14 +146,14 @@ app.post('/recipes/read', (req, res) => {
 app.post('/recipes/update', (req, res) => {
   var actionString = encodeURIComponent(`
   UPDATE Recipes
-  SET recipe_name = :frecipe_name, total_time = :ftotal_time, active_time = :factive_time
-  WHERE recipe_id = :frecipe_id; `);
+  SET recipe_name = ${recipe_name}, total_time = ${total_time}, active_time = ${active_time}
+  WHERE recipe_id = ${recipe_id}; `);
   res.redirect('/recipes/?action=' + actionString)
 })
 // Delete
 app.post('/recipes/delete', (req, res) => {
   var actionString = encodeURIComponent(`
-  DELETE FROM Recipes WHERE recipe_id = :frecipe_id;`);
+  DELETE FROM Recipes WHERE recipe_id = ${recipe_id};`);
   res.redirect('/recipes/?action=' + actionString)
 })
 
@@ -183,7 +186,7 @@ app.get('/recipes', (req, res) => {
 app.post('/locations/create', (req, res) => {
   var actionString = encodeURIComponent(`
   INSERT INTO Locations (location_name)
-  VALUES  (:flocation_name); `);
+  VALUES  (${location_name}); `);
   res.redirect('/locations/?action=' + actionString)
 })
 // Read
@@ -195,14 +198,14 @@ app.post('/locations/read', (req, res) => {
 app.post('/locations/update', (req, res) => {
   var actionString = encodeURIComponent(`
   UPDATE Locations
-  SET location_name = :flocation_name
-  WHERE location_id = :flocation_id; `);
+  SET location_name = ${location_name}
+  WHERE location_id = ${location_id}; `);
   res.redirect('/locations/?action=' + actionString)
 })
 // Delete
 app.post('/locations/delete', (req, res) => {
   var actionString = encodeURIComponent(`
-  DELETE FROM Locations WHERE location_id = :flocation_id; `);
+  DELETE FROM Locations WHERE location_id = ${location_id}; `);
   res.redirect('/locations/?action=' + actionString)
 })
 
@@ -234,7 +237,7 @@ app.get('/locations', (req, res) => {
 app.post('/shopping/create', (req, res) => {
   var actionString = encodeURIComponent(`
   INSERT INTO ShoppingLists (purchase_date, meal_plan_range)
-  VALUES (:fpurchase_date, :fmeal_plan_range); `);
+  VALUES (${purchase_date}, ${meal_plan_range}); `);
   res.redirect('/shopping/?action=' + actionString)
 })
 // Read
@@ -246,14 +249,14 @@ app.post('/shopping/read', (req, res) => {
 app.post('/shopping/update', (req, res) => {
   var actionString = encodeURIComponent(`
   UPDATE ShoppingLists
-  SET meal_plan_range = :fmeal_plan_range
-  WHERE purchase_date = :fpurchase_date; `);
+  SET meal_plan_range = ${meal_plan_range}
+  WHERE purchase_date = ${purchase_date}; `);
   res.redirect('/shopping/?action=' + actionString)
 })
 // Delete
 app.post('/shopping/delete', (req, res) => {
   var actionString = encodeURIComponent(`
-  DELETE FROM ShoppingLists WHERE purchase_date = :fpurchase_date;`);
+  DELETE FROM ShoppingLists WHERE purchase_date = ${purchase_date};`);
   res.redirect('/shopping/?action=' + actionString)
 })
 

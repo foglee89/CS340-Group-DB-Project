@@ -37,7 +37,7 @@
                             <form method="POST">
                                 <td><input type="date" value="{{purchase_date}}" id="{{purchase_date}}"></td>
                                 <td><input type="date" value="{{meal_plan_range}}" id="{{meal_plan_range}}"></td>
-                                <td><input type="submit" value="✅" id="" formaction=""></td>
+                                <td><input type="submit" value="✅" id="" formaction="" action="/create"></td>
                             </form>
                         </tr>
                 </tbody>
@@ -65,8 +65,8 @@
                             <form method="POST">
                                 <td><input type="datetime" value="{{purchase_date}}" id="{{purchase_date}}"></td>
                                 <td><input type="datetime" value="{{meal_plan_range}}" id="{{meal_plan_range}}"></td>
-                                <td><input type="submit" value="📝" onclick="updateShoppingList({{purchase_date}})"></td>
-                                <td><input type="submit" value="❌" id="" formaction="/shopping/delete({{purchase_date}})"></td>
+                                <td><input type="submit" value="📝" onclick="updateShoppingList({{purchase_date}})" action="/update"></td>
+                                <td><input type="submit" value="❌" id="" formaction="/shopping/delete({{purchase_date}})" action="/delete"></td>
                             </form>
                         </tr>
                     {{/each}}

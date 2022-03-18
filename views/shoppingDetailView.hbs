@@ -45,8 +45,8 @@
                                     <option value="{{unit}}">{{unit}}</option>
                                     {{/each}}
                                 </select>
-                                <td><input type="button" value="📝" onclick=""></td>
-                                <td><input type="button" value="❌" onclick=""></td>
+                                <td><input type="submit" value="📝" onclick="" action="/update"></td>
+                                <td><input type="submit" value="❌" onclick="" action="/delete"></td>
                             </form>
                         </tr>
                     <!-- FUTURE IMPLEMENTATION, SORT BY CATEGORY AND SEPARATE BY CATEGORY NAME -->
@@ -74,8 +74,8 @@
                                     <!-- NEED TO VALIDATE THE SELECTED VALUE INTERACTION WITH QUERY FUNCTION AND HANDLEBARS -->
                                     <option value="{{unit}}" selected="selected">{{unit}}</option>
                                 </select>
-                                <td><input type="button" value="📝" onclick="updateListProduct"></td>
-                                <td><input type="button" value="❌" onclick="deleteListProduct"></td>
+                                <td><input type="submit" value="📝" onclick="updateListProduct" action="/update"></td>
+                                <td><input type="submit" value="❌" onclick="deleteListProduct" action="/delete"></td>
                             </form>
                         </tr>
                     {{/each}}

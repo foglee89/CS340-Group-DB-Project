@@ -40,7 +40,7 @@
                                 <td><input type="text" id="{{location_name}}"></td>
                                 <!-- <td><input type="text" value="{{category}}" id="{{category}}"></td> -->
                                 <!-- <td><input type="number" value="" id=""></td> -->
-                                <td><input type="submit" value="✅" onclick=""></td>
+                                <td><input type="submit" value="✅" onclick="" action="/create"></td>
                             </form>
                         </tr>
                 </tbody>
@@ -75,8 +75,8 @@
                                 <td><input type="text" value="{{location_name}}" id="{{location_name}}"></td>
                                 <!-- <td><input type="" value="{{category}}" id="{{category}}"></td> -->
                                 <!-- <td><input type="number" value="{{product_id}}" id="{{product_id}}"></td> -->
-                                <td><input type="submit" value="📝" onclick="updateLocation({{location_id}})"></td>
-                                <td><input type="submit" value="❌" onclick="deleteLocation({{location_id}})"></td>
+                                <td><input type="submit" value="📝" onclick="updateLocation({{location_id}})" action="/update"></td>
+                                <td><input type="submit" value="❌" onclick="deleteLocation({{location_id}})" action="/delete"></td>
                             </form>
                         </tr>
                     {{/each}}

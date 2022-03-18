@@ -37,8 +37,8 @@
                                     {{/each}}
                                 </select>
                                 </td>
-                                <td><input type="button" value="📝" onclick=""></td>
-                                <td><input type="button" value="❌" onclick=""></td>
+                                <td><input type="button" value="📝" onclick="" action="/update"></td>
+                                <td><input type="button" value="❌" onclick="" action="/delete"></td>
                             </form>
                         </tr>
                         {{!-- Per entry goodness --}}
@@ -58,8 +58,8 @@
                                     <!-- NEED TO VALIDATE THE SELECTED VALUE INTERACTION WITH QUERY FUNCTION AND HANDLEBARS -->
                                     <option value="{{unit}}" selected="selected">{{unit}}</option>
                                 </select>
-                                <td><input type="button" value="📝" onclick="updateProduct"></td>
-                                <td><input type="button" value="❌" onclick="deleteProduct"></td>
+                                <td><input type="submit" value="📝" onclick="updateProduct" action="/update"></td>
+                                <td><input type="submit" value="❌" onclick="deleteProduct" action="/delete"></td>
                             </form>
                         </tr>
                     {{/each}}

@@ -45,7 +45,7 @@
                                 <td><input type="duration" id="{{total_time}}"></td>
                                 <td><input type="duration" id="{{active_time}}"></td>
                                 <td><input type="number" id="{{servings}}"></td>
-                                <td><input type="submit" value="✅" onclick=""></td>
+                                <td><input type="submit" value="✅" onclick="" action="/create"></td>
                             </form>
                         </tr>
                 </tbody>
@@ -81,8 +81,8 @@
                                 <td><input type="duration" value="{{total_time}}" id="{{total_time}}"></td>
                                 <td><input type="duration" value="{{active_time}}" id="{{active_time}}"></td>
                                 <td><input type="number" value="{{servings}}" id="{{servings}}"></td>
-                                <td><input type="submit" value="📝" onclick="updateRecipe({{recipe_id}})"></td>
-                                <td><input type="submit" value="❌" onclick="deleteRecipe({{recipe_id}})"></td>
+                                <td><input type="submit" value="📝" onclick="updateRecipe({{recipe_id}})" action="/update"></td>
+                                <td><input type="submit" value="❌" onclick="deleteRecipe({{recipe_id}})" action="/delete"></td>
                             </form>
                         </tr>
                     {{/each}}
